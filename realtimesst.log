@@ -6,3 +6,26 @@ RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current si
 RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 11. Discarding old audio chunks.
 RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 11. Discarding old audio chunks.
 RealTimeSTT: root - ERROR - Unhandled exeption in _realtime_worker: max() iterable argument is empty
+RealTimeSTT: __main__ - WARNING - Unrecognized action word. Returning to normal mode.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 442. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 90. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 90. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 100. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 100. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 99. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 99. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 98. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 99. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 99. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 66. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 66. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 62. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 73. Discarding old audio chunks.
+RealTimeSTT: root - WARNING - Audio queue size exceeds latency limit. Current size: 73. Discarding old audio chunks.

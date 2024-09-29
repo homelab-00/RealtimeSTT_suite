@@ -1,12 +1,13 @@
 import os
 import threading
+import socket
 from RealtimeSTT import AudioToTextRecorder
 from colorama import Fore, Style
 import colorama
 import keyboard
 import multiprocessing
 import warnings
-import pyautogui  # Import PyAutoGUI
+import pyautogui
 
 # Initialize colorama
 colorama.init()
@@ -54,10 +55,9 @@ def process_text(text, recorder):
     # Use PyAutoGUI to type the new transcription into the active window
     try:
         # Add a slight delay to ensure the active window is ready to receive input
-        pyautogui.sleep(0.2)  # Reduced delay
+        pyautogui.sleep(0.2)
         # Type the text with a faster typing speed
-        pyautogui.write(text, interval=0.02)  # Increased typing speed
-        # pyautogui.press('enter')  # Optional: Press Enter after typing
+        pyautogui.write(text, interval=0.02)
     except Exception as e:
         print(f"\n[PyAutoGUI Error]: {e}")
 
@@ -89,10 +89,61 @@ def setup_hotkeys():
     keyboard.add_hotkey('ctrl+2', mute_microphone, suppress=True)
     print("Hotkeys set: Ctrl+1 to Unmute, Ctrl+2 to Mute")
 
+def delete_last_word():
+    """Deletes the last word typed."""
+    try:
+        pyautogui.hotkey('ctrl', 'backspace')
+    except Exception as e:
+        print(f"Error deleting last word: {e}")
+
+def delete_last_two_words():
+    """Deletes the last two words typed."""
+    try:
+        pyautogui.hotkey('ctrl', 'backspace')
+        pyautogui.hotkey('ctrl', 'backspace')
+    except Exception as e:
+        print(f"Error deleting last two words: {e}")
+
+def handle_command(command):
+    """Handles commands received from the socket server."""
+    global muted
+    if command == 'mute':
+        mute_microphone()
+    elif command == 'unmute':
+        unmute_microphone()
+    elif command == 'delete_last_word':
+        delete_last_word()
+    elif command == 'delete_last_two_words':
+        delete_last_two_words()
+    else:
+        print(f"Unknown command: {command}")
+
+def socket_server():
+    """Socket server to receive commands from script 2."""
+    host = 'localhost'
+    port = 65432  # Port to listen on
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((host, port))
+        s.listen()
+        print("Socket server started, listening on port 65432.")
+        while True:
+            conn, addr = s.accept()
+            with conn:
+                data = conn.recv(1024)
+                if not data:
+                    continue
+                command = data.decode('utf-8').strip()
+                print(f"Received command: {command}")
+                handle_command(command)
+
 def main():
     """Main function to run the Real-Time STT script."""
     clear_console()
     print("Initializing RealTimeSTT...")
+
+    # Start the socket server in a separate thread
+    socket_thread = threading.Thread(target=socket_server, daemon=True)
+    socket_thread.start()
 
     # Capture and handle warnings
     with warnings.catch_warnings(record=True) as w:
@@ -101,7 +152,7 @@ def main():
         # Configuration for the AudioToTextRecorder
         recorder_config = {
             'spinner': False,
-            'model': 'base.en',  # Using the tiny.en model
+            'model': 'tiny.en',  # Using the tiny.en model
             'silero_sensitivity': 0.4,
             'webrtc_sensitivity': 2,
             'post_speech_silence_duration': 0.4,
@@ -109,7 +160,7 @@ def main():
             'min_gap_between_recordings': 0,
             'enable_realtime_transcription': True,
             'realtime_processing_pause': 0.2,
-            'realtime_model_type': 'base.en',  # Ensure the model type matches
+            'realtime_model_type': 'tiny.en',  # Ensure the model type matches
             'on_realtime_transcription_update': lambda text: text_detected(text, recorder), 
             'silero_deactivity_detection': True,
         }

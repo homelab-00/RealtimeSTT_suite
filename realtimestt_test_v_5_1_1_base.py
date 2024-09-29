@@ -8,6 +8,10 @@ import multiprocessing
 import warnings
 import pyautogui  # Import PyAutoGUI
 
+import sys
+sys.path.insert(0, './')  # This assumes the file is in the same directory
+from audio_recorder_v_1_1 import AudioToTextRecorder
+
 # Initialize colorama
 colorama.init()
 

@@ -19,9 +19,9 @@ muted = True  # Initially muted
 # Lock for thread-safe access to 'muted'
 mute_lock = threading.Lock()
 
-def clear_console():
-    """Clears the terminal console."""
-    os.system('clear' if os.name == 'posix' else 'cls')
+#def clear_console():
+#    """Clears the terminal console."""
+#    os.system('clear' if os.name == 'posix' else 'cls')
 
 def text_detected(text, recorder):
     """Callback function to handle detected text."""
@@ -39,7 +39,7 @@ def text_detected(text, recorder):
 
     if new_text != displayed_text:
         displayed_text = new_text
-        clear_console()
+        # clear_console()
         print(f"Language: {recorder.detected_language} (Realtime: {recorder.detected_realtime_language})")
         print(displayed_text, end="", flush=True)
 
@@ -91,7 +91,7 @@ def setup_hotkeys():
 
 def main():
     """Main function to run the Real-Time STT script."""
-    clear_console()
+    # clear_console()
     print("Initializing RealTimeSTT...")
 
     # Capture and handle warnings

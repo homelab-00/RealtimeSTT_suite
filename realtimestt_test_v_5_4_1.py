@@ -15,8 +15,22 @@ colorama.init()
 full_sentences = []
 displayed_text = ""
 muted = True  # Initially muted
+command_mode = False  # Tracks if the system is in command mode
 
-# Lock for thread-safe access to 'muted'
+# Define command and action words
+command_words = [
+    "luna",   # Standard
+    "lunna",  # Slight variation
+    "lunnaa", # Extended vowel
+    "lina",   # Alternative spelling
+    "lyna",   # Phonetic variation
+    "louna",  # Different vowel placement
+    "loonah", # Different ending
+    # Add more as needed based on testing
+]
+action_words = ["delete"]  # Expand this list with more actions in the future
+
+# Lock for thread-safe access to 'muted' and 'command_mode'
 mute_lock = threading.Lock()
 
 def clear_console():
@@ -45,12 +59,15 @@ def text_detected(text, recorder):
 
 def process_text(text, recorder):
     """Processes and appends the transcribed text."""
+    global muted, command_mode
     with mute_lock:
         if muted:
-            return
+            return  # Do not process text when muted
+
+    # Append the new text to full_sentences and update display
     full_sentences.append(text)
     text_detected("", recorder)
-    
+
     # Use PyAutoGUI to type the new transcription into the active window
     try:
         # Add a slight delay to ensure the active window is ready to receive input
@@ -60,6 +77,44 @@ def process_text(text, recorder):
         # pyautogui.press('enter')  # Optional: Press Enter after typing
     except Exception as e:
         print(f"\n[PyAutoGUI Error]: {e}")
+    
+    # Convert text to lowercase for case-insensitive matching
+    lower_text = text.lower()
+    
+    if not command_mode:
+        # Check if any command word is in the transcribed text
+        if any(cmd in lower_text for cmd in command_words):
+            command_mode = True
+            print("\nCommand mode activated. Awaiting action word...")
+    else:
+        # In command mode, check for action words
+        if any(action in lower_text for action in action_words):
+            # Execute corresponding action
+            for action in action_words:
+                if action in lower_text:
+                    execute_action(action)
+                    break  # Execute only the first matched action
+            # Reset to normal mode after action execution
+            command_mode = False
+            print("\nReturned to normal mode.")
+        else:
+            # If no action word is detected, ignore the input
+            print("\nAction word not recognized. Returning to normal mode.")
+            command_mode = False
+
+def execute_action(action):
+    """Executes the specified action."""
+    if action == "delete":
+        print("Executing 'delete' action: Deleting the last word.")
+        try:
+            # Simulate Ctrl + Backspace to delete the last word
+            pyautogui.hotkey('ctrl', 'backspace')
+            # Optionally, provide feedback
+            print("Last word deleted.")
+        except Exception as e:
+            print(f"[PyAutoGUI Error]: {e}")
+    else:
+        print(f"Action '{action}' is not defined.")
 
 def unmute_microphone():
     """Unmutes the microphone."""
@@ -94,6 +149,10 @@ def main():
     clear_console()
     print("Initializing RealTimeSTT...")
 
+    # Set up global hotkeys in a separate thread
+    hotkey_thread = threading.Thread(target=setup_hotkeys, daemon=True)
+    hotkey_thread.start()
+
     # Capture and handle warnings
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
@@ -101,7 +160,7 @@ def main():
         # Configuration for the AudioToTextRecorder
         recorder_config = {
             'spinner': False,
-            'model': 'base.en',  # Using the tiny.en model
+            'model': 'tiny.en',  # Using the tiny.en model
             'silero_sensitivity': 0.4,
             'webrtc_sensitivity': 2,
             'post_speech_silence_duration': 0.4,
@@ -109,17 +168,14 @@ def main():
             'min_gap_between_recordings': 0,
             'enable_realtime_transcription': True,
             'realtime_processing_pause': 0.2,
-            'realtime_model_type': 'base.en',  # Ensure the model type matches
-            'on_realtime_transcription_update': lambda text: text_detected(text, recorder), 
+            'realtime_model_type': 'tiny.en',  # Ensure the model type matches
+            'on_realtime_transcription_update': lambda text: process_text(text, recorder), 
             'silero_deactivity_detection': True,
+            # Removed wakeword parameters
         }
 
         # Initialize the recorder inside the main function
         recorder = AudioToTextRecorder(**recorder_config)
-
-        # Set up global hotkeys in a separate thread
-        hotkey_thread = threading.Thread(target=setup_hotkeys, daemon=True)
-        hotkey_thread.start()
 
         try:
             while True:

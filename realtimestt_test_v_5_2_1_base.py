@@ -1,18 +1,22 @@
 import os
 import threading
-from RealtimeSTT import AudioToTextRecorder
+import sys
+sys.path.insert(0, './')  # This assumes the file is in the same directory
+from audio_recorder_v_1_1 import AudioToTextRecorder
 from colorama import Fore, Style
 import colorama
 import keyboard
 import multiprocessing
 import warnings
 import pyautogui  # Import PyAutoGUI
+from collections import deque  # Import deque for efficient buffer management
 
 # Initialize colorama
 colorama.init()
 
 # Global variables
-full_sentences = []
+max_buffer_size = 50  # Maximum number of sentences in the buffer
+full_sentences = deque(maxlen=max_buffer_size)  # Use deque to automatically discard old sentences
 displayed_text = ""
 muted = True  # Initially muted
 
@@ -48,18 +52,19 @@ def process_text(text, recorder):
     with mute_lock:
         if muted:
             return
-    full_sentences.append(text)
-    text_detected("", recorder)
-    
-    # Use PyAutoGUI to type the new transcription into the active window
-    try:
-        # Add a slight delay to ensure the active window is ready to receive input
-        pyautogui.sleep(0.2)  # Reduced delay
-        # Type the text with a faster typing speed
-        pyautogui.write(text, interval=0.02)  # Increased typing speed
-        # pyautogui.press('enter')  # Optional: Press Enter after typing
-    except Exception as e:
-        print(f"\n[PyAutoGUI Error]: {e}")
+    if text:  # Ensure that empty strings are not appended
+        full_sentences.append(text)
+        text_detected("", recorder)
+        
+        # Use PyAutoGUI to type the new transcription into the active window
+        try:
+            # Add a slight delay to ensure the active window is ready to receive input
+            pyautogui.sleep(0.2)  # Reduced delay
+            # Type the text with a faster typing speed
+            pyautogui.write(text, interval=0.02)  # Increased typing speed
+            # pyautogui.press('enter')  # Optional: Press Enter after typing
+        except Exception as e:
+            print(f"\n[PyAutoGUI Error]: {e}")
 
 def unmute_microphone():
     """Unmutes the microphone."""
@@ -89,6 +94,12 @@ def setup_hotkeys():
     keyboard.add_hotkey('ctrl+2', mute_microphone, suppress=True)
     print("Hotkeys set: Ctrl+1 to Unmute, Ctrl+2 to Mute")
 
+def handle_exit(recorder):
+    """Handles graceful exit on Ctrl+C."""
+    print("\nExiting RealTimeSTT...")
+    recorder.stop()
+    os._exit(0)  # Force exit to ensure all threads are terminated
+
 def main():
     """Main function to run the Real-Time STT script."""
     clear_console()
@@ -101,17 +112,21 @@ def main():
         # Configuration for the AudioToTextRecorder
         recorder_config = {
             'spinner': False,
-            'model': 'base.en',  # Using the tiny.en model
+            'model': 'base.en',  # Using the base.en model
             'silero_sensitivity': 0.4,
             'webrtc_sensitivity': 2,
             'post_speech_silence_duration': 0.4,
             'min_length_of_recording': 0,
             'min_gap_between_recordings': 0,
             'enable_realtime_transcription': True,
-            'realtime_processing_pause': 0.2,
+            'realtime_processing_pause': 0.5,  # Increased pause to handle longer speech
             'realtime_model_type': 'base.en',  # Ensure the model type matches
             'on_realtime_transcription_update': lambda text: text_detected(text, recorder), 
             'silero_deactivity_detection': True,
+            # Additional parameters to handle longer speech
+            'handle_buffer_overflow': False,  # We'll manage the buffer ourselves
+            'pre_recording_buffer_duration': 0.5,  # Increased buffer to handle longer speech
+            'on_realtime_transcription_stabilized': lambda text: process_text(text, recorder),
         }
 
         # Initialize the recorder inside the main function
@@ -121,12 +136,17 @@ def main():
         hotkey_thread = threading.Thread(target=setup_hotkeys, daemon=True)
         hotkey_thread.start()
 
+        # Set up graceful exit handling
+        exit_thread = threading.Thread(target=keyboard.wait, daemon=True)
+        exit_thread.start()
+
+        # Register Ctrl+C to trigger handle_exit
         try:
             while True:
                 # Continuously listen and process audio
                 recorder.text(lambda text: process_text(text, recorder))
         except KeyboardInterrupt:
-            print("\nExiting RealTimeSTT...")
+            handle_exit(recorder)
         finally:
             recorder.stop()  # Ensure the recorder is properly stopped
 
