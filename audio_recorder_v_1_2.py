@@ -1,7 +1,3 @@
-# The only difference from the original audio_recorder.py is that the logger is set
-# right after the imports, in order to allow the "realtimestt_test_v_...py"" script
-# to be able to exit gracefully with Ctrl+C 
-
 """
 
 The AudioToTextRecorder class in the provided code facilitates
@@ -61,7 +57,6 @@ import re
 import gc
 
 import logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Set OpenMP runtime duplicate library handling to OK (Use only for development!)
