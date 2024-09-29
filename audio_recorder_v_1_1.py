@@ -56,6 +56,10 @@ import os
 import re
 import gc
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 # Set OpenMP runtime duplicate library handling to OK (Use only for development!)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
@@ -705,10 +709,17 @@ class AudioToTextRecorder:
             return thread
 
     def _read_stdout(self):
-        while not self.shutdown_event.is_set():
-            if self.parent_stdout_pipe.poll(0.1):
+        try:
+            while True:
                 message = self.parent_stdout_pipe.recv()
-                print(message, flush=True)
+                # Process the message as needed
+        except EOFError:
+            # Gracefully handle the pipe closure
+            logger.info("Pipe closed. Exiting _read_stdout thread.")
+        except BrokenPipeError:
+            logger.info("Broken pipe detected. Exiting _read_stdout thread.")
+        except Exception as e:
+            logger.error(f"Unexpected error in _read_stdout: {e}")
 
     @staticmethod
     def _transcription_worker(conn,
