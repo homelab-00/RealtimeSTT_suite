@@ -1,39 +1,15 @@
-# The only difference from the original audio_recorder.py is that the logger is set
-# right after the imports, in order to allow the "realtimestt_test_v_XXX.py"" script
-# to be able to exit gracefully with Ctrl+C 
-
-"""
-
-The AudioToTextRecorder class in the provided code facilitates
-fast speech-to-text transcription.
-
-The class employs the faster_whisper library to transcribe the recorded audio
-into text using machine learning models, which can be run either on a GPU or
-CPU. Voice activity detection (VAD) is built in, meaning the software can
-automatically start or stop recording based on the presence or absence of
-speech. It integrates wake word detection through the pvporcupine library,
-allowing the software to initiate recording when a specific word or phrase
-is spoken. The system provides real-time feedback and can be further
-customized.
-
-Features:
-- Voice Activity Detection: Automatically starts/stops recording when speech
-  is detected or when speech ends.
-- Wake Word Detection: Starts recording when a specified wake word (or words)
-  is detected.
-- Event Callbacks: Customizable callbacks for when recording starts
-  or finishes.
-- Fast Transcription: Returns the transcribed text from the audio as fast
-  as possible.
-
-Author: Kolja Beigel
-
-"""
+import os
+import sys
+import threading
+import multiprocessing as mp
+import colorama
+from colorama import Fore, Style
+import keyboard
+import warnings
+import pyautogui
 
 from typing import Iterable, List, Optional, Union
-import torch.multiprocessing as mp
 import torch
-from typing import List, Union
 from ctypes import c_bool
 from openwakeword.model import Model
 from scipy.signal import resample
@@ -44,7 +20,6 @@ import collections
 import numpy as np
 import pvporcupine
 import traceback
-import threading
 import webrtcvad
 import itertools
 import datetime
@@ -56,41 +31,89 @@ import queue
 import halo
 import time
 import copy
-import os
 import re
 import gc
 
-import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# Initialize colorama
+colorama.init()
 
-# Set OpenMP runtime duplicate library handling to OK (Use only for development!)
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+# Global variables
+full_sentences = []
+displayed_text = ""
+muted = True  # Initially muted
 
-INIT_MODEL_TRANSCRIPTION = "tiny"
-INIT_MODEL_TRANSCRIPTION_REALTIME = "tiny"
-INIT_REALTIME_PROCESSING_PAUSE = 0.2
-INIT_SILERO_SENSITIVITY = 0.4
-INIT_WEBRTC_SENSITIVITY = 3
-INIT_POST_SPEECH_SILENCE_DURATION = 0.6
-INIT_MIN_LENGTH_OF_RECORDING = 0.5
-INIT_MIN_GAP_BETWEEN_RECORDINGS = 0
-INIT_WAKE_WORDS_SENSITIVITY = 0.6
-INIT_PRE_RECORDING_BUFFER_DURATION = 1.0
-INIT_WAKE_WORD_ACTIVATION_DELAY = 0.0
-INIT_WAKE_WORD_TIMEOUT = 5.0
-INIT_WAKE_WORD_BUFFER_DURATION = 0.1
-ALLOWED_LATENCY_LIMIT = 10
+# Lock for thread-safe access to 'muted'
+mute_lock = threading.Lock()
 
-TIME_SLEEP = 0.02
-SAMPLE_RATE = 16000
-BUFFER_SIZE = 512
-INT16_MAX_ABS_VALUE = 32768.0
+def clear_console():
+    """Clears the terminal console."""
+    os.system('clear' if os.name == 'posix' else 'cls')
 
-INIT_HANDLE_BUFFER_OVERFLOW = False
-if platform.system() != 'Darwin':
-    INIT_HANDLE_BUFFER_OVERFLOW = True
+def text_detected(text, recorder):
+    """Callback function to handle detected text."""
+    global displayed_text
+    with mute_lock:
+        if muted:
+            return  # Do not process text when muted
 
+    # Apply alternating colors to sentences
+    sentences_with_style = [
+        f"{Fore.YELLOW + sentence + Style.RESET_ALL if i % 2 == 0 else Fore.CYAN + sentence + Style.RESET_ALL} "
+        for i, sentence in enumerate(full_sentences)
+    ]
+    new_text = "".join(sentences_with_style).strip() + " " + text if full_sentences else text
+
+    if new_text != displayed_text:
+        displayed_text = new_text
+        clear_console()
+        print(f"Language: {recorder.detected_language} (Realtime: {recorder.detected_realtime_language})")
+        print(displayed_text, end="", flush=True)
+
+def process_text(text, recorder):
+    """Processes and appends the transcribed text."""
+    with mute_lock:
+        if muted:
+            return
+    full_sentences.append(text)
+    text_detected("", recorder)
+    
+    # Use PyAutoGUI to type the new transcription into the active window
+    try:
+        # Add a slight delay to ensure the active window is ready to receive input
+        pyautogui.sleep(0.2)  # Reduced delay
+        # Type the text with a faster typing speed
+        pyautogui.write(text, interval=0.02)  # Increased typing speed
+        # pyautogui.press('enter')  # Optional: Press Enter after typing
+    except Exception as e:
+        print(f"\n[PyAutoGUI Error]: {e}")
+
+def unmute_microphone():
+    """Unmutes the microphone."""
+    global muted
+    with mute_lock:
+        if not muted:
+            print("\nMicrophone is already unmuted.")
+            return
+        muted = False
+        print("\nMicrophone unmuted.")
+
+def mute_microphone():
+    """Mutes the microphone."""
+    global muted
+    with mute_lock:
+        if muted:
+            print("\nMicrophone is already muted.")
+            return
+        muted = True
+        print("\nMicrophone muted.")
+
+def setup_hotkeys():
+    """Sets up global hotkeys for muting and unmuting the microphone."""
+    # Register Ctrl+1 to unmute
+    keyboard.add_hotkey('ctrl+1', unmute_microphone, suppress=True)
+    # Register Ctrl+2 to mute
+    keyboard.add_hotkey('ctrl+2', mute_microphone, suppress=True)
+    print("Hotkeys set: Ctrl+1 to Unmute, Ctrl+2 to Mute")
 
 class AudioToTextRecorder:
     """
@@ -100,7 +123,7 @@ class AudioToTextRecorder:
     """
 
     def __init__(self,
-                 model: str = INIT_MODEL_TRANSCRIPTION,
+                 model: str = "tiny",
                  language: str = "",
                  compute_type: str = "default",
                  input_device_index: int = None,
@@ -118,28 +141,20 @@ class AudioToTextRecorder:
                  # Realtime transcription parameters
                  enable_realtime_transcription=False,
                  use_main_model_for_realtime=False,
-                 realtime_model_type=INIT_MODEL_TRANSCRIPTION_REALTIME,
-                 realtime_processing_pause=INIT_REALTIME_PROCESSING_PAUSE,
+                 realtime_model_type="tiny",
+                 realtime_processing_pause=0.2,
                  on_realtime_transcription_update=None,
                  on_realtime_transcription_stabilized=None,
 
                  # Voice activation parameters
-                 silero_sensitivity: float = INIT_SILERO_SENSITIVITY,
+                 silero_sensitivity: float = 0.4,
                  silero_use_onnx: bool = False,
                  silero_deactivity_detection: bool = False,
-                 webrtc_sensitivity: int = INIT_WEBRTC_SENSITIVITY,
-                 post_speech_silence_duration: float = (
-                     INIT_POST_SPEECH_SILENCE_DURATION
-                 ),
-                 min_length_of_recording: float = (
-                     INIT_MIN_LENGTH_OF_RECORDING
-                 ),
-                 min_gap_between_recordings: float = (
-                     INIT_MIN_GAP_BETWEEN_RECORDINGS
-                 ),
-                 pre_recording_buffer_duration: float = (
-                     INIT_PRE_RECORDING_BUFFER_DURATION
-                 ),
+                 webrtc_sensitivity: int = 3,
+                 post_speech_silence_duration: float = 0.6,
+                 min_length_of_recording: float = 0.5,
+                 min_gap_between_recordings: float = 0,
+                 pre_recording_buffer_duration: float = 1.0,
                  on_vad_detect_start=None,
                  on_vad_detect_stop=None,
 
@@ -148,209 +163,27 @@ class AudioToTextRecorder:
                  openwakeword_model_paths: str = None,
                  openwakeword_inference_framework: str = "onnx",
                  wake_words: str = "",
-                 wake_words_sensitivity: float = INIT_WAKE_WORDS_SENSITIVITY,
-                 wake_word_activation_delay: float = (
-                    INIT_WAKE_WORD_ACTIVATION_DELAY
-                 ),
-                 wake_word_timeout: float = INIT_WAKE_WORD_TIMEOUT,
-                 wake_word_buffer_duration: float = INIT_WAKE_WORD_BUFFER_DURATION,
+                 wake_words_sensitivity: float = 0.6,
+                 wake_word_activation_delay: float = 0.0,
+                 wake_word_timeout: float = 5.0,
+                 wake_word_buffer_duration: float = 0.1,
                  on_wakeword_detected=None,
                  on_wakeword_timeout=None,
                  on_wakeword_detection_start=None,
                  on_wakeword_detection_end=None,
                  on_recorded_chunk=None,
                  debug_mode=False,
-                 handle_buffer_overflow: bool = INIT_HANDLE_BUFFER_OVERFLOW,
+                 handle_buffer_overflow: bool = False,
                  beam_size: int = 5,
                  beam_size_realtime: int = 3,
-                 buffer_size: int = BUFFER_SIZE,
-                 sample_rate: int = SAMPLE_RATE,
+                 buffer_size: int = 512,
+                 sample_rate: int = 16000,
                  initial_prompt: Optional[Union[str, Iterable[int]]] = None,
                  suppress_tokens: Optional[List[int]] = [-1],
                  ):
         """
-        Initializes an audio recorder and  transcription
+        Initializes an audio recorder and transcription
         and wake word detection.
-
-        Args:
-        - model (str, default="tiny"): Specifies the size of the transcription
-          model to use or the path to a converted model directory.
-                Valid options are 'tiny', 'tiny.en', 'base', 'base.en',
-                'small', 'small.en', 'medium', 'medium.en', 'large-v1',
-                'large-v2'.
-                If a specific size is provided, the model is downloaded
-                from the Hugging Face Hub.
-        - language (str, default=""): Language code for speech-to-text engine.
-            If not specified, the model will attempt to detect the language
-            automatically.
-        - compute_type (str, default="default"): Specifies the type of
-            computation to be used for transcription.
-            See https://opennmt.net/CTranslate2/quantization.html.
-        - input_device_index (int, default=0): The index of the audio input
-            device to use.
-        - gpu_device_index (int, default=0): Device ID to use.
-            The model can also be loaded on multiple GPUs by passing a list of
-            IDs (e.g. [0, 1, 2, 3]). In that case, multiple transcriptions can
-            run in parallel when transcribe() is called from multiple Python
-            threads
-        - device (str, default="cuda"): Device for model to use. Can either be 
-            "cuda" or "cpu".
-        - on_recording_start (callable, default=None): Callback function to be
-            called when recording of audio to be transcripted starts.
-        - on_recording_stop (callable, default=None): Callback function to be
-            called when recording of audio to be transcripted stops.
-        - on_transcription_start (callable, default=None): Callback function
-            to be called when transcription of audio to text starts.
-        - ensure_sentence_starting_uppercase (bool, default=True): Ensures
-            that every sentence detected by the algorithm starts with an
-            uppercase letter.
-        - ensure_sentence_ends_with_period (bool, default=True): Ensures that
-            every sentence that doesn't end with punctuation such as "?", "!"
-            ends with a period
-        - use_microphone (bool, default=True): Specifies whether to use the
-            microphone as the audio input source. If set to False, the
-            audio input source will be the audio data sent through the
-            feed_audio() method.
-        - spinner (bool, default=True): Show spinner animation with current
-            state.
-        - level (int, default=logging.WARNING): Logging level.
-        - enable_realtime_transcription (bool, default=False): Enables or
-            disables real-time transcription of audio. When set to True, the
-            audio will be transcribed continuously as it is being recorded.
-        - use_main_model_for_realtime (str, default=False):
-            If True, use the main transcription model for both regular and
-            real-time transcription. If False, use a separate model specified
-            by realtime_model_type for real-time transcription.
-            Using a single model can save memory and potentially improve
-            performance, but may not be optimized for real-time processing.
-            Using separate models allows for a smaller, faster model for
-            real-time transcription while keeping a more accurate model for
-            final transcription.
-        - realtime_model_type (str, default="tiny"): Specifies the machine
-            learning model to be used for real-time transcription. Valid
-            options include 'tiny', 'tiny.en', 'base', 'base.en', 'small',
-            'small.en', 'medium', 'medium.en', 'large-v1', 'large-v2'.
-        - realtime_processing_pause (float, default=0.1): Specifies the time
-            interval in seconds after a chunk of audio gets transcribed. Lower
-            values will result in more "real-time" (frequent) transcription
-            updates but may increase computational load.
-        - on_realtime_transcription_update = A callback function that is
-            triggered whenever there's an update in the real-time
-            transcription. The function is called with the newly transcribed
-            text as its argument.
-        - on_realtime_transcription_stabilized = A callback function that is
-            triggered when the transcribed text stabilizes in quality. The
-            stabilized text is generally more accurate but may arrive with a
-            slight delay compared to the regular real-time updates.
-        - silero_sensitivity (float, default=SILERO_SENSITIVITY): Sensitivity
-            for the Silero Voice Activity Detection model ranging from 0
-            (least sensitive) to 1 (most sensitive). Default is 0.5.
-        - silero_use_onnx (bool, default=False): Enables usage of the
-            pre-trained model from Silero in the ONNX (Open Neural Network
-            Exchange) format instead of the PyTorch format. This is
-            recommended for faster performance.
-        - silero_deactivity_detection (bool, default=False): Enables the Silero
-            model for end-of-speech detection. More robust against background
-            noise. Utilizes additional GPU resources but improves accuracy in
-            noisy environments. When False, uses the default WebRTC VAD,
-            which is more sensitive but may continue recording longer due
-            to background sounds.
-        - webrtc_sensitivity (int, default=WEBRTC_SENSITIVITY): Sensitivity
-            for the WebRTC Voice Activity Detection engine ranging from 0
-            (least aggressive / most sensitive) to 3 (most aggressive,
-            least sensitive). Default is 3.
-        - post_speech_silence_duration (float, default=0.2): Duration in
-            seconds of silence that must follow speech before the recording
-            is considered to be completed. This ensures that any brief
-            pauses during speech don't prematurely end the recording.
-        - min_gap_between_recordings (float, default=1.0): Specifies the
-            minimum time interval in seconds that should exist between the
-            end of one recording session and the beginning of another to
-            prevent rapid consecutive recordings.
-        - min_length_of_recording (float, default=1.0): Specifies the minimum
-            duration in seconds that a recording session should last to ensure
-            meaningful audio capture, preventing excessively short or
-            fragmented recordings.
-        - pre_recording_buffer_duration (float, default=0.2): Duration in
-            seconds for the audio buffer to maintain pre-roll audio
-            (compensates speech activity detection latency)
-        - on_vad_detect_start (callable, default=None): Callback function to
-            be called when the system listens for voice activity.
-        - on_vad_detect_stop (callable, default=None): Callback function to be
-            called when the system stops listening for voice activity.
-        - wakeword_backend (str, default="pvporcupine"): Specifies the backend
-            library to use for wake word detection. Supported options include
-            'pvporcupine' for using the Porcupine wake word engine or 'oww' for
-            using the OpenWakeWord engine.
-        - openwakeword_model_paths (str, default=None): Comma-separated paths
-            to model files for the openwakeword library. These paths point to
-            custom models that can be used for wake word detection when the
-            openwakeword library is selected as the wakeword_backend.
-        - openwakeword_inference_framework (str, default="onnx"): Specifies
-            the inference framework to use with the openwakeword library.
-            Can be either 'onnx' for Open Neural Network Exchange format 
-            or 'tflite' for TensorFlow Lite.
-        - wake_words (str, default=""): Comma-separated string of wake words to
-            initiate recording when using the 'pvporcupine' wakeword backend.
-            Supported wake words include: 'alexa', 'americano', 'blueberry',
-            'bumblebee', 'computer', 'grapefruits', 'grasshopper', 'hey google',
-            'hey siri', 'jarvis', 'ok google', 'picovoice', 'porcupine',
-            'terminator'. For the 'openwakeword' backend, wake words are
-            automatically extracted from the provided model files, so specifying
-            them here is not necessary.
-        - wake_words_sensitivity (float, default=0.5): Sensitivity for wake
-            word detection, ranging from 0 (least sensitive) to 1 (most
-            sensitive). Default is 0.5.
-        - wake_word_activation_delay (float, default=0): Duration in seconds
-            after the start of monitoring before the system switches to wake
-            word activation if no voice is initially detected. If set to
-            zero, the system uses wake word activation immediately.
-        - wake_word_timeout (float, default=5): Duration in seconds after a
-            wake word is recognized. If no subsequent voice activity is
-            detected within this window, the system transitions back to an
-            inactive state, awaiting the next wake word or voice activation.
-        - wake_word_buffer_duration (float, default=0.1): Duration in seconds
-            to buffer audio data during wake word detection. This helps in
-            cutting out the wake word from the recording buffer so it does not
-            falsely get detected along with the following spoken text, ensuring
-            cleaner and more accurate transcription start triggers.
-            Increase this if parts of the wake word get detected as text.
-        - on_wakeword_detected (callable, default=None): Callback function to
-            be called when a wake word is detected.
-        - on_wakeword_timeout (callable, default=None): Callback function to
-            be called when the system goes back to an inactive state after when
-            no speech was detected after wake word activation
-        - on_wakeword_detection_start (callable, default=None): Callback
-             function to be called when the system starts to listen for wake
-             words
-        - on_wakeword_detection_end (callable, default=None): Callback
-            function to be called when the system stops to listen for
-            wake words (e.g. because of timeout or wake word detected)
-        - on_recorded_chunk (callable, default=None): Callback function to be
-            called when a chunk of audio is recorded. The function is called
-            with the recorded audio chunk as its argument.
-        - debug_mode (bool, default=False): If set to True, the system will
-            print additional debug information to the console.
-        - handle_buffer_overflow (bool, default=True): If set to True, the system
-            will log a warning when an input overflow occurs during recording and
-            remove the data from the buffer.
-        - beam_size (int, default=5): The beam size to use for beam search
-            decoding.
-        - beam_size_realtime (int, default=3): The beam size to use for beam
-            search decoding in the real-time transcription model.
-        - buffer_size (int, default=512): The buffer size to use for audio
-            recording. Changing this may break functionality.
-        - sample_rate (int, default=16000): The sample rate to use for audio
-            recording. Changing this will very probably functionality (as the
-            WebRTC VAD model is very sensitive towards the sample rate).
-        - initial_prompt (str or iterable of int, default=None): Initial
-            prompt to be fed to the transcription models.
-        - suppress_tokens (list of int, default=[-1]): Tokens to be suppressed
-            from the transcription output.
-
-        Raises:
-            Exception: Errors related to initializing transcription
-            model, wake word detection, or audio recording.
         """
         self.language = language
         self.compute_type = compute_type
@@ -397,7 +230,7 @@ class AudioToTextRecorder:
         self.handle_buffer_overflow = handle_buffer_overflow
         self.beam_size = beam_size
         self.beam_size_realtime = beam_size_realtime
-        self.allowed_latency_limit = ALLOWED_LATENCY_LIMIT
+        self.allowed_latency_limit = 200
 
         self.level = level
         self.audio_queue = mp.Queue()
@@ -618,7 +451,6 @@ class AudioToTextRecorder:
             else:
                 logging.exception(f"Wakeword engine {self.wakeword_backend} unknown/unsupported. Please specify one of: pvporcupine, openwakeword.")
 
-
         # Setup voice activity detection model WebRTC
         try:
             logging.info("Initializing WebRTC voice with "
@@ -818,7 +650,7 @@ class AudioToTextRecorder:
                         logging.error(f"General transcription error: {e}")
                         conn.send(('error', str(e)))
                 else:
-                    time.sleep(TIME_SLEEP)
+                    time.sleep(0.02)
 
             except KeyboardInterrupt:
                 interrupt_stop_event.set()
@@ -1056,7 +888,7 @@ class AudioToTextRecorder:
 
         # Convert recorded frames to the appropriate audio format.
         audio_array = np.frombuffer(b''.join(self.frames), dtype=np.int16)
-        self.audio = audio_array.astype(np.float32) / INT16_MAX_ABS_VALUE
+        self.audio = audio_array.astype(np.float32) / 32768.0
         self.frames.clear()
 
         # Reset recording-related timestamps
@@ -1099,11 +931,11 @@ class AudioToTextRecorder:
                 status, result = self.parent_transcription_pipe.recv()
                 self._set_state("inactive")
                 if status == 'success':
-                    segments, info = result
+                    transcription, info = result
                     self.detected_language = info.language if info.language_probability > 0 else None
                     self.detected_language_probability = info.language_probability
                     self.last_transcription_bytes = audio_copy
-                    transcription = self._preprocess_output(segments)
+                    transcription = self._preprocess_output(transcription)
                     end_time = time.time()  # End timing
                     transcription_time = end_time - start_time
                     # print(f"Model {self.main_model_type} completed transcription in {transcription_time:.2f} seconds")
@@ -1127,7 +959,7 @@ class AudioToTextRecorder:
             porcupine_index = self.porcupine.process(pcm)
             if self.debug_mode:
                 print (f"wake words porcupine_index: {porcupine_index}")
-            return self.porcupine.process(pcm)
+            return porcupine_index
 
         elif self.wakeword_backend in {'oww', 'openwakeword', 'openwakewords'}:
             pcm = np.frombuffer(data, dtype=np.int16)
@@ -1532,7 +1364,7 @@ class AudioToTextRecorder:
                 if time.time() - self.silero_check_time > 0.1:
                     self.silero_check_time = 0
 
-                # Handle wake word timeout (waited to long initiating
+                # Handle wake word timeout (waited too long initiating
                 # speech after wake word detection)
                 if self.wake_word_detect_time and time.time() - \
                         self.wake_word_detect_time > self.wake_word_timeout:
@@ -1552,10 +1384,8 @@ class AudioToTextRecorder:
 
         except Exception as e:
             if not self.interrupt_stop_event.is_set():
-                logging.error(f"Unhandled exeption in _recording_worker: {e}")
+                logging.error(f"Unhandled exception in _recording_worker: {e}")
                 raise
-
-
 
     def _realtime_worker(self):
         """
@@ -1592,8 +1422,7 @@ class AudioToTextRecorder:
                         )
 
                     # Normalize the array to a [-1, 1] range
-                    audio_array = audio_array.astype(np.float32) / \
-                        INT16_MAX_ABS_VALUE
+                    audio_array = audio_array.astype(np.float32) / 32768.0
 
                     if self.use_main_model_for_realtime:
                         with self.transcription_lock:
@@ -1602,10 +1431,10 @@ class AudioToTextRecorder:
                                 if self.parent_transcription_pipe.poll(timeout=5):  # Wait for 5 seconds
                                     status, result = self.parent_transcription_pipe.recv()
                                     if status == 'success':
-                                        segments, info = result
+                                        transcription, info = result
                                         self.detected_realtime_language = info.language if info.language_probability > 0 else None
                                         self.detected_realtime_language_probability = info.language_probability
-                                        realtime_text = segments
+                                        realtime_text = transcription
                                     else:
                                         logging.error(f"Realtime transcription error: {result}")
                                         continue
@@ -1713,10 +1542,10 @@ class AudioToTextRecorder:
 
                 # If not recording, sleep briefly before checking again
                 else:
-                    time.sleep(TIME_SLEEP)
+                    time.sleep(0.02)
 
         except Exception as e:
-            logging.error(f"Unhandled exeption in _realtime_worker: {e}")
+            logging.error(f"Unhandled exception in _realtime_worker: {e}")
             raise
 
     def _is_silero_speech(self, chunk):
@@ -1735,10 +1564,10 @@ class AudioToTextRecorder:
 
         self.silero_working = True
         audio_chunk = np.frombuffer(chunk, dtype=np.int16)
-        audio_chunk = audio_chunk.astype(np.float32) / INT16_MAX_ABS_VALUE
+        audio_chunk = audio_chunk.astype(np.float32) / 32768.0
         vad_prob = self.silero_vad_model(
             torch.from_numpy(audio_chunk),
-            SAMPLE_RATE).item()
+            16000).item()
         is_silero_speech_active = vad_prob > (1 - self.silero_sensitivity)
         if is_silero_speech_active:
             self.is_silero_speech_active = True
@@ -1985,9 +1814,6 @@ class AudioToTextRecorder:
         This is particularly useful for applications that need to display
         live transcription results to users and want to highlight parts of the
         transcription that are less likely to change.
-
-        Args:
-            text (str): The stabilized transcription text.
         """
         if self.on_realtime_transcription_stabilized:
             if self.is_recording:
@@ -2041,3 +1867,64 @@ class AudioToTextRecorder:
               exception, if any.
         """
         self.shutdown()
+
+def main():
+    """Main function to run the Real-Time STT script."""
+    clear_console()
+    print("Initializing RealTimeSTT...")
+
+    # Capture and handle warnings
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("always")
+        
+        # Configuration for the AudioToTextRecorder
+        recorder_config = {
+            'spinner': False,
+            'model': 'base.en',  # Using the tiny.en model for the main transcription model
+
+            'language': 'en',
+            'device': 'cpu',
+            'debug_mode': False,
+            'use_main_model_for_realtime': False,
+            'ensure_sentence_starting_uppercase': True,
+            'ensure_sentence_ends_with_period': True,
+            'handle_buffer_overflow': True,
+
+            'silero_sensitivity': 0.4,
+            'webrtc_sensitivity': 2,
+            'post_speech_silence_duration': 0.4,
+            'min_length_of_recording': 0,
+            'min_gap_between_recordings': 0,
+            'enable_realtime_transcription': True,
+            'realtime_processing_pause': 0.2,
+            'realtime_model_type': 'tiny.en', # Use the tiny.en model for real-time transcription model
+            'on_realtime_transcription_update': lambda text: text_detected(text, recorder), 
+            'silero_deactivity_detection': True,
+        }
+
+        # Initialize the recorder inside the main function
+        recorder = AudioToTextRecorder(**recorder_config)
+
+        # Set up global hotkeys in a separate thread
+        hotkey_thread = threading.Thread(target=setup_hotkeys, daemon=True)
+        hotkey_thread.start()
+
+        try:
+            while True:
+                # Continuously listen and process audio
+                recorder.text(lambda text: process_text(text, recorder))
+        except KeyboardInterrupt:
+            print("\nExiting RealTimeSTT...")
+        finally:
+            recorder.stop()  # Ensure the recorder is properly stopped
+
+    # Print captured warnings
+    for warning in w:
+        print(f"{warning.message}")
+
+    # Print the message after handling warnings
+    print("Say something! Press Ctrl+1 to Unmute, Ctrl+2 to Mute.", end="", flush=True)
+
+if __name__ == '__main__':
+    mp.freeze_support()  # For Windows support
+    main()

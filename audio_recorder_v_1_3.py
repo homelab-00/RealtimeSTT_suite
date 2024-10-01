@@ -1,6 +1,8 @@
 # The only difference from the original audio_recorder.py is that the logger is set
 # right after the imports, in order to allow the "realtimestt_test_v_XXX.py"" script
-# to be able to exit gracefully with Ctrl+C 
+# to be able to exit gracefully with Ctrl+C
+
+# Note: Other changes have been made as well, unsure about the exact details
 
 """
 
@@ -446,7 +448,7 @@ class AudioToTextRecorder:
         logger.setLevel(level)  # Set the root logger's level
 
         # Create a file handler and set its level
-        file_handler = logging.FileHandler('realtimesst.log')
+        file_handler = logging.FileHandler('realtimestt.log')
         file_handler.setLevel(logging.DEBUG)
         file_handler.setFormatter(logging.Formatter(log_format))
 
@@ -713,10 +715,17 @@ class AudioToTextRecorder:
             return thread
 
     def _read_stdout(self):
-        while not self.shutdown_event.is_set():
-            if self.parent_stdout_pipe.poll(0.1):
+        try:
+            while True:
                 message = self.parent_stdout_pipe.recv()
-                print(message, flush=True)
+                # Process the message as needed
+        except EOFError:
+            # Gracefully handle the pipe closure
+            logger.info("Pipe closed. Exiting _read_stdout thread.")
+        except BrokenPipeError:
+            logger.info("Broken pipe detected. Exiting _read_stdout thread.")
+        except Exception as e:
+            logger.error(f"Unexpected error in _read_stdout: {e}")
 
     @staticmethod
     def _transcription_worker(conn,

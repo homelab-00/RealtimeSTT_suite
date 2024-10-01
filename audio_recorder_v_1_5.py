@@ -1,6 +1,4 @@
-# The only difference from the original audio_recorder.py is that the logger is set
-# right after the imports, in order to allow the "realtimestt_test_v_XXX.py"" script
-# to be able to exit gracefully with Ctrl+C 
+# Only change is the ALLOWED_LATENCY_LIMIT, which is set to 200 instead of 10.
 
 """
 
@@ -60,10 +58,6 @@ import os
 import re
 import gc
 
-import logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 # Set OpenMP runtime duplicate library handling to OK (Use only for development!)
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
@@ -80,7 +74,7 @@ INIT_PRE_RECORDING_BUFFER_DURATION = 1.0
 INIT_WAKE_WORD_ACTIVATION_DELAY = 0.0
 INIT_WAKE_WORD_TIMEOUT = 5.0
 INIT_WAKE_WORD_BUFFER_DURATION = 0.1
-ALLOWED_LATENCY_LIMIT = 10
+ALLOWED_LATENCY_LIMIT = 200
 
 TIME_SLEEP = 0.02
 SAMPLE_RATE = 16000

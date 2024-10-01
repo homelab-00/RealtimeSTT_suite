@@ -5,7 +5,7 @@ import threading
 # a local audio_recorder.py file instead of using that one that comes with the RealtimeSTT library.
 import sys
 sys.path.insert(0, './')  # This assumes audio_recorder.py is same directory as this script
-from audio_recorder_v_1_1 import AudioToTextRecorder
+from audio_recorder_v_1_4 import AudioToTextRecorder
 
 from colorama import Fore, Style
 import colorama
@@ -13,10 +13,22 @@ import keyboard
 import multiprocessing
 import warnings
 import pyautogui
-import sys
+from collections import deque
+import pyaudio
+import numpy as np
+import time
+import logging
+import webrtcvad  # Import WebRTC VAD
 
 # Initialize colorama
 colorama.init()
+
+# Configure logging to write to debug.log
+logging.basicConfig(
+    filename='debug.log',
+    level=logging.DEBUG,
+    format='%(asctime)s %(levelname)s:%(message)s'
+)
 
 # Global variables
 full_sentences = []
@@ -25,6 +37,14 @@ muted = True  # Initially muted
 
 # Lock for thread-safe access to 'muted'
 mute_lock = threading.Lock()
+
+# Initialize audio buffer
+buffer_capacity = 1875  # Approximately one minute of audio at 16000 Hz with chunk size 512
+audio_buffer = deque(maxlen=buffer_capacity)
+
+# Initialize WebRTC VAD
+vad = webrtcvad.Vad()
+vad.set_mode(1)  # 0: least aggressive, 3: most aggressive
 
 def clear_console():
     """Clears the terminal console."""
@@ -96,6 +116,48 @@ def setup_hotkeys():
     keyboard.add_hotkey('ctrl+2', mute_microphone, suppress=True)
     print("Hotkeys set: Ctrl+1 to Unmute, Ctrl+2 to Mute")
 
+def capture_audio_to_buffer():
+    """Captures live audio from the microphone, applies VAD, and stores it in the buffer."""
+    p = pyaudio.PyAudio()
+    try:
+        # Open stream
+        stream = p.open(format=pyaudio.paInt16,
+                        channels=1,
+                        rate=16000,
+                        input=True,
+                        frames_per_buffer=512)
+        while True:
+            data = stream.read(512, exception_on_overflow=False)
+            # Apply VAD to check if the chunk contains speech
+            is_speech = vad.is_speech(data, sample_rate=16000)
+            if is_speech:
+                audio_buffer.append(data)
+                logging.debug(f"Speech detected. Audio buffer size: {len(audio_buffer)}")
+            else:
+                logging.debug("Silence detected. Chunk discarded.")
+    except Exception as e:
+        print(f"Error in audio capture: {e}")
+    finally:
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+
+def feed_audio_from_buffer(recorder):
+    """Feeds audio chunks from the buffer into the transcription engine when internal buffer is not full."""
+    while True:
+        if len(audio_buffer) > 0:
+            internal_buffer_size = recorder.get_internal_buffer_size()
+            if internal_buffer_size < recorder.allowed_latency_limit:
+                chunk = audio_buffer.popleft()
+                recorder.feed_audio(chunk)
+                logging.debug(f"Feeding audio chunk. Internal buffer size: {internal_buffer_size + 1}")
+            else:
+                # Internal buffer is full; wait before feeding more chunks
+                logging.debug("Internal buffer is full. Waiting to feed more chunks.")
+                time.sleep(0.1)
+        else:
+            time.sleep(0.01)  # Adjust sleep time as needed
+
 def main():
     """Main function to run the Real-Time STT script."""
     clear_console()
@@ -105,47 +167,40 @@ def main():
     with warnings.catch_warnings(record=True) as w:
         warnings.simplefilter("always")
         
-        # Configuration for the AudioToTextRecorder (these override the default values from audio_recorder.py)
+        # Configuration for the AudioToTextRecorder
         recorder_config = {
-            'spinner': False, # I love the spinner, but I'm pretty sure it's creating some issues
-            'model': 'base.en',  # Using the base.en model
-            'language': 'en', # Set the language to English
-            'device': 'cpu', # Use the CPU instead of GPU for processing (as GPU is not available)
-            'debug_mode': False, # Enable debug mode for detailed logs
-            'use_main_model_for_realtime': False,  # Better performance when using two models, also see comment below for 'realtime_model_type'
-            'ensure_sentence_starting_uppercase': True, # Ensure the first letter of the sentence is capitalized
-            'ensure_sentence_ends_with_period': True, # Ensure the sentence ends with a period
-            'handle_buffer_overflow': True, # If set, the system will log a warning when an input overflow occurs 
-                                            # during recording and remove the data from the buffer.
-            'silero_sensitivity': 0.4, # Sensitivity for Silero's voice activity detection ranging from 0 (least sensitive) 
-                                       # to 1 (most sensitive). Default is 0.6.
-            'webrtc_sensitivity': 2, #  Sensitivity for the WebRTC Voice Activity Detection engine ranging from 0 
-                                     # (least aggressive / most sensitive) to 3 (most aggressive, least sensitive). Default is 3.
-            'post_speech_silence_duration': 0.4, # Duration in seconds of silence that must follow speech before the recording is
-                                                 # considered to be completed. This ensures that any brief pauses during speech
-                                                 # don't prematurely end the recording. Default is 0.2
-            'min_length_of_recording': 0.3, # Specifies the minimum time interval in seconds that should exist between the end of one recording
-                                          # session and the beginning of another to prevent rapid consecutive recordings. Default is 1.0
-            'min_gap_between_recordings': 0, # Specifies the minimum duration in seconds that a recording session should last to ensure meaningful
-                                             # audio capture, preventing excessively short or fragmented recordings. Default is 1.0
-            'pre_recording_buffer_duration': 0.2, # The time span, in seconds, during which audio is buffered prior to formal recording. This helps
-                                                  # counterbalancing the latency inherent in speech activity detection, ensuring no initial audio is 
-                                                  # missed. Default is 0.2
+            'spinner': False,
+            'model': 'base.en',  # Using the base.en model for the main transcription model
+            'language': 'en',
+            'device': 'cpu',
+            'debug_mode': False,
+            'use_main_model_for_realtime': False,
+            'ensure_sentence_starting_uppercase': True,
+            'ensure_sentence_ends_with_period': True,
+            'handle_buffer_overflow': True,  # Enable internal buffer overflow handling
+            'silero_sensitivity': 0.4,
+            'webrtc_sensitivity': 2,
+            'post_speech_silence_duration': 0.4,
+            'min_length_of_recording': 0,
+            'min_gap_between_recordings': 0,
             'enable_realtime_transcription': True,
-            'realtime_processing_pause': 0.2, # Specifies the time interval in seconds after a chunk of audio gets transcribed. Lower values will
-                                              # result in more "real-time" (frequent) transcription updates but may increase computational load.
-                                              # Default is 0.2
-            'realtime_model_type': 'tiny.en',  # Using the tiny.en model for the first pass of real-time transcription,
-                                             # and the main model (in this case base.en) for the final transcription.
+            'realtime_processing_pause': 0.2,
+            'realtime_model_type': 'base.en',  # Use the base.en model for real-time transcription
             'on_realtime_transcription_update': lambda text: text_detected(text, recorder), 
-            'silero_deactivity_detection': True, # Enables the Silero model for end-of-speech detection. More robust against background
-                                                 # noise. Utilizes additional GPU resources but improves accuracy in noisy environments.
-                                                 # When False, uses the default WebRTC VAD, which is more sensitive but may continue 
-                                                 # recording longer due to background sounds. Default is False.
+            'silero_deactivity_detection': True,
+            'use_microphone': False,  # Disable built-in microphone usage
         }
 
         # Initialize the recorder inside the main function
         recorder = AudioToTextRecorder(**recorder_config)
+
+        # Start audio capture thread
+        audio_capture_thread = threading.Thread(target=capture_audio_to_buffer, daemon=True)
+        audio_capture_thread.start()
+
+        # Start audio feeding thread
+        audio_feeding_thread = threading.Thread(target=feed_audio_from_buffer, args=(recorder,), daemon=True)
+        audio_feeding_thread.start()
 
         # Set up global hotkeys in a separate thread
         hotkey_thread = threading.Thread(target=setup_hotkeys, daemon=True)
@@ -158,11 +213,7 @@ def main():
         except KeyboardInterrupt:
             print("\nExiting RealTimeSTT...")
         finally:
-            recorder.stop()  # Ensure the recorder is properly stopped
-            # Optionally, wait for threads to finish if the library exposes any
-            # For example:
-            # if recorder.thread:
-            #     recorder.thread.join()
+            recorder.shutdown()  # Ensure the recorder is properly stopped
 
     # Print captured warnings
     for warning in w:

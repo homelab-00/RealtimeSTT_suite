@@ -1,9 +1,11 @@
 import os
 import threading
 
+# "from RealtimeSTT import AudioToTextRecorder" - We're commenting out this line as we're importing
+# a local audio_recorder.py file instead of using that one that comes with the RealtimeSTT library.
 import sys
-sys.path.insert(0, './')  # This assumes the file is in the same directory
-from audio_recorder_v_1_0 import AudioToTextRecorder
+sys.path.insert(0, './')  # This assumes audio_recorder.py is same directory as this script
+from audio_recorder_v_1_1 import AudioToTextRecorder
 
 from colorama import Fore, Style
 import colorama
