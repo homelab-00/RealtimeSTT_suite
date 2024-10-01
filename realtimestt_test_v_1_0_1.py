@@ -1,4 +1,11 @@
-from RealtimeSTT import AudioToTextRecorder
+# "from RealtimeSTT import AudioToTextRecorder" - We're commenting out this line as we're importing
+# a local audio_recorder.py file instead of using that one that comes with the RealtimeSTT library.
+import sys
+sys.path.insert(0, './')  # This assumes audio_recorder.py is same directory as this script
+from audio_recorder_new_v_1_0 import AudioToTextRecorder
+
+
+
 from colorama import Fore, Back, Style
 import colorama
 import os
@@ -35,7 +42,7 @@ if __name__ == '__main__':
 
     recorder_config = {
         'spinner': False,
-        'model': 'tiny.en',
+        'model': 'medium.en',
         'silero_sensitivity': 0.4,
         'webrtc_sensitivity': 2,
         'post_speech_silence_duration': 0.4,
