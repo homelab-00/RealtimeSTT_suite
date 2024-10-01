@@ -11,51 +11,58 @@ RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initializ
 RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
 RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
 Traceback (most recent call last):
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
     ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
     _load_lib(lib)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
     torch.ops.load_library(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torch\_ops.py", line 1032, in load_library
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
     ctypes.CDLL(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\ctypes\__init__.py", line 374, in __init__
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
     self._handle = _dlopen(self._name, mode)
-FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
 RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
 RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
 Traceback (most recent call last):
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
     ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
     _load_lib(lib)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
     torch.ops.load_library(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torch\_ops.py", line 1032, in load_library
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
     ctypes.CDLL(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\ctypes\__init__.py", line 374, in __init__
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
     self._handle = _dlopen(self._name, mode)
-FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
 RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
 RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
 Traceback (most recent call last):
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
     ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
     _load_lib(lib)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
     torch.ops.load_library(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torch\_ops.py", line 1032, in load_library
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
     ctypes.CDLL(path)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\ctypes\__init__.py", line 374, in __init__
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
     self._handle = _dlopen(self._name, mode)
-FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
 RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
 RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
 Traceback (most recent call last):
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
     ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
-  File "C:\Users\Bill\anaconda3\envs\RealtimeSTT-3.9\lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
     raise RuntimeError(f"FFmpeg{version} extension is not available.")
 RuntimeError: FFmpeg extension is not available.
 RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
@@ -74,16 +81,43 @@ RealTimeSTT: root - DEBUG - Starting realtime transcription
 RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.336
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.488
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.424
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.704
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.544
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:05.984
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:05.696
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:07.296
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:06.912
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.057896 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.082382 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.104507 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.124545 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.883242 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.873962 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.464
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.648
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
@@ -93,16 +127,174 @@ RealTimeSTT: root - INFO - recording started
 RealTimeSTT: root - DEBUG - Waiting for recording stop
 RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.007627 < -1.000000)
 RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.007627 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.007627 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.308973 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.261010 < -1.000000)
 RealTimeSTT: root - DEBUG - Waiting for recording start
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.673654 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.432
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.616
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.864
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.304
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.520
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.176
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.168
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.288
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:05.376
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:06.592
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.336
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.432
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.520
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.800
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
 RealTimeSTT: root - INFO - voice activity detected
 RealTimeSTT: root - INFO - recording started
 RealTimeSTT: root - DEBUG - Waiting for recording stop
@@ -110,9 +302,420 @@ RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
 RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.464
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.712
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.368
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.520
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.704
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.336
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.520
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.376467 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.823434 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.272
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.392
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.023826 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.023828 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.023828 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.023828 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.397169 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.042445 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.304
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.424
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.199498 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.704551 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.240
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.296
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.272
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.296
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.342225 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.342225 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.342225 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Compression ratio threshold is not met with temperature 0.6 (6.142857 > 2.400000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.833660 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.404174 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.066170 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.066170 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.066170 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.144694 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.364071 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.347997 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.208
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.232
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.384
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.272
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.296
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.384
 RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
@@ -122,21 +725,301 @@ RealTimeSTT: root - INFO - recording started
 RealTimeSTT: root - DEBUG - Waiting for recording stop
 RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.036014 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.036016 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.132283 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.319294 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.273277 < -1.000000)
-RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.132826 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.465692 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.332761 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.268617 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.639769 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.537131 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.904073 < -1.000000)
 RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.640
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:01.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.976
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:05.920
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:07.456
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.208
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.264
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.240
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.385882 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.720956 > 0.600000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.208
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.303688 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.640495 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.208
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.264
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.043345 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.043343 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.043343 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.681927 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.614730 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.836353 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.005981 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.005983 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.005983 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.005983 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Compression ratio threshold is not met with temperature 0.8 (8.076923 > 2.400000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.042340 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.348416 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.348416 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.366011 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Compression ratio threshold is not met with temperature 0.6 (6.866667 > 2.400000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.459946 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.246394 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.178426 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.621717 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.240
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.328
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.082747 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.066857 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.015431 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.133358 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.073659 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.763677 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.240
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.126872 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.620618 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.240
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.017861 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.027248 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.080902 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.271628 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.485416 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.473118 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.126955 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.126955 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.126955 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.471707 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.738947 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.211072 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.000
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.068131 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.620734 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.208
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.264
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
@@ -147,12 +1030,478 @@ RealTimeSTT: root - DEBUG - Waiting for recording stop
 RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.688
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.368
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.200915 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.200915 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.200915 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.404360 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.984633 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.164216 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Starting realtime transcription
-RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.224
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.272
 RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
 RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
 RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.281578 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.732485 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.304
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.392
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
 RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.068799 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.068800 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.131091 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.397427 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.518984 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.435325 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.292346 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.294379 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.173194 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.412502 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.519586 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.259690 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.310339 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.769281 > 0.600000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.054856 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.054856 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.054856 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.054856 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.054856 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.712216 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.343422 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.628460 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.304
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.424
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.009593 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.009592 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.069932 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.069932 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.069932 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-2.627226 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: root - DEBUG - Explicitly setting the multiprocessing start method to 'spawn'
+RealTimeSTT: root - DEBUG - Start method has already been set. Details: context has already been set
+RealTimeSTT: root - INFO - Starting RealTimeSTT
+RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+RealTimeSTT: root - DEBUG - Starting recording worker
+RealTimeSTT: root - DEBUG - Starting realtime worker
+RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+RealTimeSTT: root - DEBUG - Main transcription model ready
+RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.184
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.278673 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - No speech threshold is met (0.620014 > 0.600000)
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.304
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: root - DEBUG - Starting realtime transcription
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.392
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.016834 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.079219 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.108478 < -1.000000)
+RealTimeSTT: root - DEBUG - Waiting for recording start
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.250896 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.217604 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.989032 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - INFO - voice activity detected
+RealTimeSTT: root - INFO - recording started
+RealTimeSTT: root - DEBUG - Waiting for recording stop
+RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.216
+RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.169248 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.2 (-1.169247 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.4 (-1.169247 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.6 (-1.886469 < -1.000000)
+RealTimeSTT: root - INFO - voice deactivity detected
+RealTimeSTT: root - INFO - recording stopped
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.8 (-1.844815 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 1.0 (-1.875136 < -1.000000)
+RealTimeSTT: faster_whisper - DEBUG - Reset prompt. prompt_reset_on_temperature threshold is met 1.000000 > 0.500000
+RealTimeSTT: root - DEBUG - Waiting for recording start
