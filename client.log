@@ -1,0 +1,21 @@
+2024-10-01 21:11:03,515 - root - INFO - Logging is configured and working.
+2024-10-01 21:11:08,499 - root - INFO - Logging is configured and working.
+2024-10-01 21:11:08,512 - root - INFO - Logging is configured and working.
+2024-10-01 21:11:08,514 - root - INFO - Initializing faster_whisper main transcription model medium.en
+2024-10-01 21:11:08,831 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-10-01 21:11:09,015 - root - DEBUG - Audio recording initialized successfully at 16000 Hz, reading 1024 frames at a time
+2024-10-01 21:11:09,103 - urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-medium.en/revision/main HTTP/11" 200 875
+2024-10-01 21:11:12,535 - root - DEBUG - Faster_whisper main speech to text transcription model initialized successfully
+2024-10-01 21:11:16,254 - root - DEBUG - Receive from _transcription_worker  pipe
+2024-10-01 21:11:16,254 - faster_whisper - INFO - Processing audio with duration 00:04.480
+2024-10-01 21:11:16,360 - faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:11:40,339 - root - DEBUG - Final text detected with main model: The quick brown fox jumps over the lazy dog.
+2024-10-01 21:11:45,258 - root - DEBUG - Receive from _transcription_worker  pipe
+2024-10-01 21:11:45,259 - faster_whisper - INFO - Processing audio with duration 00:02.880
+2024-10-01 21:11:45,385 - faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:12:13,304 - root - DEBUG - Final text detected with main model: The quick brown fox.
+2024-10-01 21:12:13,808 - root - DEBUG - Receive from _transcription_worker  pipe
+2024-10-01 21:12:13,811 - faster_whisper - INFO - Processing audio with duration 00:29.184
+2024-10-01 21:12:14,047 - faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:12:18,840 - root - DEBUG - Audio data worker process finished due to KeyboardInterrupt
+2024-10-01 21:12:33,778 - root - DEBUG - Transcription worker process finished due to KeyboardInterrupt
