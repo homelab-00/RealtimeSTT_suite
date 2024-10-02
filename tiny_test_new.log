@@ -1,0 +1,194 @@
+2024-10-02 18:12:06.640 - RealTimeSTT: root - INFO - Starting RealTimeSTT
+2024-10-02 18:12:06.650 - RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2024-10-02 18:12:06.658 - RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+2024-10-02 18:12:06.965 - RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-10-02 18:12:07.222 - RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+2024-10-02 18:12:07.591 - RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+2024-10-02 18:12:07.591 - RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 3
+2024-10-02 18:12:07.592 - RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2024-10-02 18:12:08.501 - RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+2024-10-02 18:12:08.502 - RealTimeSTT: root - DEBUG - Starting recording worker
+2024-10-02 18:12:08.503 - RealTimeSTT: root - DEBUG - Starting realtime worker
+2024-10-02 18:12:08.504 - RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+2024-10-02 18:12:12.522 - RealTimeSTT: root - DEBUG - Main transcription model ready
+2024-10-02 18:12:12.523 - RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+2024-10-02 18:12:12.544 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-02 18:12:12.544 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-02 18:12:12.544 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-02 18:12:13.144 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:14.175 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:14.495 - RealTimeSTT: root - INFO - voice activity detected
+2024-10-02 18:12:14.495 - RealTimeSTT: root - INFO - recording started
+2024-10-02 18:12:14.495 - RealTimeSTT: root - INFO - State changed from 'listening' to 'recording'
+2024-10-02 18:12:14.495 - RealTimeSTT: root - DEBUG - Waiting for recording stop
+2024-10-02 18:12:14.501 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.556 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.557 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.598 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 17920
+2024-10-02 18:12:14.598 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.120
+2024-10-02 18:12:14.628 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.630 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.668 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-02 18:12:14.689 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.691 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.747 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.749 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.818 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.820 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.877 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.880 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.949 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:14.953 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.008 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.011 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.067 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.069 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.137 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.140 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.195 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:15.198 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.200 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.267 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.268 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.327 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.329 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.387 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.330
+2024-10-02 18:12:15.390 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.330
+2024-10-02 18:12:15.460 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 18:12:15.330
+2024-10-02 18:12:15.460 - RealTimeSTT: root - INFO - Resetting self.speech_end_silence_start
+2024-10-02 18:12:15.463 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.481 - RealTimeSTT: root - DEBUG - Realtime text detected:  the quick
+2024-10-02 18:12:15.516 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.518 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.587 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.589 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.594 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 34304
+2024-10-02 18:12:15.594 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.144
+2024-10-02 18:12:15.648 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.651 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.674 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-02 18:12:15.707 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.710 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.779 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.783 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.837 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.837 - RealTimeSTT: root - DEBUG - Adding early transcription request
+2024-10-02 18:12:15.841 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.907 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 18:12:15.588
+2024-10-02 18:12:15.908 - RealTimeSTT: root - INFO - Resetting self.speech_end_silence_start
+2024-10-02 18:12:15.910 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.968 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:15.971 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.029 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.032 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.100 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.102 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.158 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.161 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.227 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:16.230 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.233 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.289 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.291 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 18:12:16.289
+2024-10-02 18:12:16.292 - RealTimeSTT: root - INFO - Resetting self.speech_end_silence_start
+2024-10-02 18:12:16.348 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.350 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.418 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.420 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.477 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.480 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.548 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.550 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.609 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.613 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.667 - RealTimeSTT: root - DEBUG - Realtime text detected:  The quick brown fox.
+2024-10-02 18:12:16.668 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.670 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.738 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.740 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.782 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 52736
+2024-10-02 18:12:16.782 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.296
+2024-10-02 18:12:16.798 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.800 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:16.868 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:16.800
+2024-10-02 18:12:16.870 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:16.800
+2024-10-02 18:12:16.894 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-02 18:12:16.929 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:16.800
+2024-10-02 18:12:16.932 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:16.800
+2024-10-02 18:12:16.988 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 18:12:16.800
+2024-10-02 18:12:16.988 - RealTimeSTT: root - INFO - Resetting self.speech_end_silence_start
+2024-10-02 18:12:16.991 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.057 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.060 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.117 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.119 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.187 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.188 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.245 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:17.247 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.250 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.307 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.309 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.376 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.379 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.436 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.438 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.507 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.438
+2024-10-02 18:12:17.508 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 18:12:17.438
+2024-10-02 18:12:17.509 - RealTimeSTT: root - INFO - Resetting self.speech_end_silence_start
+2024-10-02 18:12:17.566 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.568 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.627 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.630 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.698 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.701 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.757 - RealTimeSTT: root - DEBUG - Realtime text detected:  The quick brown fox jumps over.
+2024-10-02 18:12:17.757 - RealTimeSTT: root - DEBUG - is_speech: True, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.759 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 0
+2024-10-02 18:12:17.828 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.831 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.869 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 70144
+2024-10-02 18:12:17.869 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.384
+2024-10-02 18:12:17.888 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.890 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.947 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.949 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:17.953 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-02 18:12:18.017 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.018 - RealTimeSTT: root - DEBUG - Adding early transcription request
+2024-10-02 18:12:18.040 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.077 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.079 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.148 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.151 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.208 - RealTimeSTT: root - DEBUG - is_speech: False, str_speech_end_silence_start: 18:12:17.759
+2024-10-02 18:12:18.208 - RealTimeSTT: root - INFO - voice deactivity detected at 18:12:17.759, time since silence start: 0.450 seconds
+2024-10-02 18:12:18.208 - RealTimeSTT: root - INFO - recording stopped
+2024-10-02 18:12:18.208 - RealTimeSTT: root - INFO - State changed from 'recording' to 'listening'
+2024-10-02 18:12:18.209 - RealTimeSTT: root - INFO - State changed from 'listening' to 'inactive'
+2024-10-02 18:12:18.209 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'transcribing'
+2024-10-02 18:12:18.210 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 2
+2024-10-02 18:12:18.210 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2024-10-02 18:12:18.265 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:18.265 - RealTimeSTT: root - INFO - State changed from 'transcribing' to 'inactive'
+2024-10-02 18:12:18.981 - RealTimeSTT: root - DEBUG - Realtime text detected:  The quick brown fox jumps over the lazy dog.
+2024-10-02 18:12:19.295 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:19.296 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-02 18:12:19.296 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-02 18:12:19.296 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-02 18:12:20.315 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:21.345 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:22.365 - RealTimeSTT: root - DEBUG - _recording_worker processing audio data
+2024-10-02 18:12:23.239 - RealTimeSTT: root - INFO - KeyboardInterrupt in wait_audio, shutting down
+2024-10-02 18:12:23.239 - RealTimeSTT: root - DEBUG - RealtimeSTT shutting down
+2024-10-02 18:12:23.239 - RealTimeSTT: root - DEBUG - Finishing recording thread
+2024-10-02 18:12:23.266 - RealTimeSTT: root - DEBUG - Terminating reader process
+2024-10-02 18:12:23.284 - RealTimeSTT: root - DEBUG - Receive from stdout pipe
+2024-10-02 18:12:23.808 - RealTimeSTT: root - DEBUG - Terminating transcription process
+2024-10-02 18:12:23.867 - RealTimeSTT: root - DEBUG - Finishing realtime thread
+2024-10-02 18:12:23.980 - RealTimeSTT: root - INFO - KeyboardInterrupt in text() method
+2024-10-02 18:12:23.980 - RealTimeSTT: root - DEBUG - RealtimeSTT shutting down
+2024-10-02 18:12:23.980 - RealTimeSTT: root - DEBUG - Finishing recording thread
+2024-10-02 18:12:23.980 - RealTimeSTT: root - DEBUG - Terminating reader process
+2024-10-02 18:12:23.980 - RealTimeSTT: root - DEBUG - Terminating transcription process
+2024-10-02 18:12:23.980 - RealTimeSTT: root - DEBUG - Finishing realtime thread
