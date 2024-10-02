@@ -1,0 +1,481 @@
+2024-10-01 21:19:13 - RealTimeSTT: root - INFO - Starting RealTimeSTT
+2024-10-01 21:19:13 - RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2024-10-01 21:19:13 - RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+2024-10-01 21:19:13 - RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-10-01 21:19:14 - RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+2024-10-01 21:19:14 - RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+2024-10-01 21:19:14 - RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 2
+2024-10-01 21:19:14 - RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg6
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg6 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg6.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg5
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg5 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg5.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg4
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg4 extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 108, in _find_versionsed_ffmpeg_extension
+    _load_lib(lib)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 94, in _load_lib
+    torch.ops.load_library(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torch\_ops.py", line 1032, in load_library
+    ctypes.CDLL(path)
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\ctypes\__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: Could not find module 'C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\lib\libtorio_ffmpeg4.pyd' (or one of its dependencies). Try using the full path with constructor syntax.
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Loading FFmpeg
+2024-10-01 21:19:15 - RealTimeSTT: torio._extension.utils - DEBUG - Failed to load FFmpeg extension.
+Traceback (most recent call last):
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 116, in _find_ffmpeg_extension
+    ext = _find_versionsed_ffmpeg_extension(ffmpeg_ver)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bill\anaconda3\envs\RealTimeSTT\Lib\site-packages\torio\_extension\utils.py", line 106, in _find_versionsed_ffmpeg_extension
+    raise RuntimeError(f"FFmpeg{version} extension is not available.")
+RuntimeError: FFmpeg extension is not available.
+2024-10-01 21:19:15 - RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+2024-10-01 21:19:15 - RealTimeSTT: root - DEBUG - Starting recording worker
+2024-10-01 21:19:15 - RealTimeSTT: root - DEBUG - Starting realtime worker
+2024-10-01 21:19:15 - RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:19 - RealTimeSTT: root - DEBUG - Main transcription model ready
+2024-10-01 21:19:19 - RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-01 21:19:19 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:19 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:20 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 3 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806759.449804
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - voice activity detected
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - recording started
+2024-10-01 21:19:21 - RealTimeSTT: root - INFO - State changed from 'listening' to 'recording'
+2024-10-01 21:19:21 - RealTimeSTT: root - DEBUG - Waiting for recording stop
+2024-10-01 21:19:21 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 19968
+2024-10-01 21:19:21 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.248
+2024-10-01 21:19:21 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:19:22 - RealTimeSTT: faster_whisper - DEBUG - Log probability threshold is not met with temperature 0.0 (-1.074052 < -1.000000)
+2024-10-01 21:19:23 - RealTimeSTT: root - DEBUG - Realtime text detected:  the quick
+2024-10-01 21:19:23 - RealTimeSTT: root - DEBUG - Starting realtime transcription
+2024-10-01 21:19:23 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 43520
+2024-10-01 21:19:23 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.720
+2024-10-01 21:19:23 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:19:24 - RealTimeSTT: root - DEBUG - Realtime text detected:  The quick brown fox jumps.
+2024-10-01 21:19:24 - RealTimeSTT: root - DEBUG - Starting realtime transcription
+2024-10-01 21:19:24 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 60928
+2024-10-01 21:19:24 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.808
+2024-10-01 21:19:24 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-01 21:19:25 - RealTimeSTT: root - DEBUG - Realtime text detected:  The quick brown fox jumps over the laser.
+2024-10-01 21:19:25 - RealTimeSTT: root - DEBUG - Starting realtime transcription
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - voice deactivity detected
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - recording stopped
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - State changed from 'recording' to 'listening'
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - State changed from 'listening' to 'inactive'
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'transcribing'
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - State changed from 'transcribing' to 'inactive'
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe pipe after sendiung transcription request
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 0
+2024-10-01 21:19:25 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:00.000
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - DEBUG - Realtime text detected: 
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:25 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: inactive, self.recording_stop_time: 0, self.listen_start: 0
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-01 21:19:26 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:26 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:27 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech detected in frame 2 of 3
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - not recording, state: listening, self.recording_stop_time: 0, self.listen_start: 1727806766.5116842
+2024-10-01 21:19:28 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-01 21:19:28 - RealTimeSTT: root - DEBUG - Receive from stdout pipe

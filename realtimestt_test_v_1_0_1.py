@@ -2,7 +2,7 @@
 # a local audio_recorder.py file instead of using that one that comes with the RealtimeSTT library.
 import sys
 sys.path.insert(0, './')  # This assumes audio_recorder.py is same directory as this script
-from audio_recorder_new_v_1_0 import AudioToTextRecorder
+from audio_recorder_new_v_1_1 import AudioToTextRecorder
 
 
 
@@ -42,7 +42,9 @@ if __name__ == '__main__':
 
     recorder_config = {
         'spinner': False,
-        'model': 'medium.en',
+        'model': 'tiny.en',
+        'debug_mode': True,
+        'use_main_model_for_realtime': False,
         'silero_sensitivity': 0.4,
         'webrtc_sensitivity': 2,
         'post_speech_silence_duration': 0.4,
