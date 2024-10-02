@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     import sys
     sys.path.insert(0, './')  # This assumes audio_recorder.py is same directory as this script
-    from audio_recorder_v_1_0 import AudioToTextRecorder
+    from audio_recorder_v_1_1 import AudioToTextRecorder
 
     from colorama import Fore, Back, Style
     import colorama
