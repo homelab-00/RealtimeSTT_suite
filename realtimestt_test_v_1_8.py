@@ -95,7 +95,7 @@ if __name__ == '__main__':
     recorder_config = {
         'spinner': False,
         'model': 'large-v2',
-        # 'input_device_index': 1,  # Uncomment and set if needed
+        'input_device_index': 0,  # Uncomment and set if needed
         'realtime_model_type': 'tiny.en',
         'language': 'en',
         'silero_sensitivity': 0.05,
@@ -113,7 +113,8 @@ if __name__ == '__main__':
         'beam_size': 5,
         'beam_size_realtime': 1,
         'no_log_file': False,
-        'use_main_transcription_model': False,  # Pass the toggle here
+        'use_main_transcription_model': USE_MAIN_MODEL,  # Pass the toggle here
+        'use_extended_logging': True
     }
 
     if EXTENDED_LOGGING:

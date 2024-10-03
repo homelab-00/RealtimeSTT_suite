@@ -75,6 +75,8 @@ INIT_WAKE_WORD_TIMEOUT = 5.0
 INIT_WAKE_WORD_BUFFER_DURATION = 0.1
 ALLOWED_LATENCY_LIMIT = 100
 
+USE_MAIN_MODEL = False  # Set to False to use only real-time model
+
 TIME_SLEEP = 0.02
 SAMPLE_RATE = 16000
 BUFFER_SIZE = 512
@@ -192,7 +194,7 @@ class AudioToTextRecorder:
                  input_device_index: int = None,
                  gpu_device_index: Union[int, List[int]] = 0,
                  device: str = "cuda",
-                 use_main_transcription_model=True,  # Added parameter
+                 use_main_transcription_model: bool = USE_MAIN_MODEL,  # Added parameter
                  on_recording_start=None,
                  on_recording_stop=None,
                  on_transcription_start=None,
