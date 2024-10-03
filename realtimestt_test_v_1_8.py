@@ -95,7 +95,7 @@ if __name__ == '__main__':
     recorder_config = {
         'spinner': False,
         'model': 'large-v2',
-        'input_device_index': 0,  # Uncomment and set if needed
+        # 'input_device_index': 1,  # Uncomment and set if needed
         'realtime_model_type': 'tiny.en',
         'language': 'en',
         'silero_sensitivity': 0.05,
