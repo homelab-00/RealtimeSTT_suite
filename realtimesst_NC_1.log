@@ -1,0 +1,148 @@
+2024-10-03 20:00:26.541 - RealTimeSTT: root - INFO - Starting RealTimeSTT
+2024-10-03 20:00:26.558 - RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2024-10-03 20:00:26.569 - RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model small.en
+2024-10-03 20:00:26.971 - RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-10-03 20:00:27.261 - RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-small.en/revision/main HTTP/11" 200 873
+2024-10-03 20:00:28.946 - RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+2024-10-03 20:00:28.948 - RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 3
+2024-10-03 20:00:28.950 - RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2024-10-03 20:00:30.239 - RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+2024-10-03 20:00:30.242 - RealTimeSTT: root - DEBUG - Starting realtime worker
+2024-10-03 20:00:30.243 - RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+2024-10-03 20:00:42.040 - RealTimeSTT: root - DEBUG - Main transcription model ready
+2024-10-03 20:00:42.043 - RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+2024-10-03 20:00:42.044 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-03 20:00:42.045 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-03 20:00:42.047 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-03 20:00:42.066 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.069 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.137 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.140 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.197 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.200 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.277 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.280 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.337 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.340 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.397 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.400 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.458 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.461 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.537 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.539 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.597 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.600 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.647 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.650 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.707 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.711 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.787 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.789 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.847 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.849 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.907 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.910 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.988 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:42.990 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.026 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.030 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.097 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.101 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.157 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.160 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.237 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.241 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.297 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.300 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.356 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.359 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.438 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.440 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.476 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.481 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.547 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.550 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.608 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.610 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.667 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.670 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.747 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.750 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.807 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.810 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.887 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.890 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.926 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.929 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:43.997 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.000 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.056 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.060 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.117 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.121 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.197 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.201 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.248 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.251 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.307 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.309 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.377 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.380 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.438 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:44.440 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.507 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.509 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.567 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.570 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.648 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.651 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.707 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.711 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.757 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.759 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:44.837 - RealTimeSTT: root - INFO - voice activity detected
+2024-10-03 20:00:44.840 - RealTimeSTT: root - INFO - recording started
+2024-10-03 20:00:44.842 - RealTimeSTT: root - INFO - State changed from 'listening' to 'recording'
+2024-10-03 20:00:44.844 - RealTimeSTT: root - DEBUG - Waiting for recording stop
+2024-10-03 20:00:44.883 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 16896
+2024-10-03 20:00:44.886 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.056
+2024-10-03 20:00:44.980 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 20:00:47.009 - RealTimeSTT: root - INFO - recording stopped
+2024-10-03 20:00:47.051 - RealTimeSTT: root - INFO - State changed from 'recording' to 'listening'
+2024-10-03 20:00:47.055 - RealTimeSTT: root - INFO - State changed from 'listening' to 'inactive'
+2024-10-03 20:00:47.059 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.059 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'transcribing'
+2024-10-03 20:00:47.107 - RealTimeSTT: root - INFO - State changed from 'transcribing' to 'inactive'
+2024-10-03 20:00:47.112 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2024-10-03 20:00:47.116 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.126 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.135 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.139 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.269 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.279 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.317 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.371 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.392 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:47.396 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:47.411 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:47.474 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:47.484 - RealTimeSTT: root - INFO - Speech not detected in any of 3 frames
+2024-10-03 20:00:47.489 - RealTimeSTT: root - INFO - Speech detected in frame 2 of 3
+2024-10-03 20:00:47.517 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.528 - RealTimeSTT: root - INFO - Speech detected in frame 1 of 3
+2024-10-03 20:00:47.577 - RealTimeSTT: root - INFO - voice activity detected
+2024-10-03 20:00:47.581 - RealTimeSTT: root - INFO - recording started
+2024-10-03 20:00:47.586 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'recording'
+2024-10-03 20:00:56.543 - RealTimeSTT: root - DEBUG - Realtime text detected:  Use...
+2024-10-03 20:00:56.571 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 160256
+2024-10-03 20:00:56.576 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:10.016
+2024-10-03 20:00:56.795 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 20:01:13.272 - RealTimeSTT: root - DEBUG - Realtime text detected:  and you have one a lot in life. In real estate, in business, in TV, in politics. So  let me start with the mindset.
+2024-10-03 20:01:13.301 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 427520
+2024-10-03 20:01:13.309 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:26.720
+2024-10-03 20:01:13.712 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 20:01:32.967 - RealTimeSTT: root - DEBUG - Realtime text detected:  and you have one a lot in life in real estate, in business, in TV, in politics. So  let me start with a mindset, a psychology question.
+2024-10-03 20:01:32.993 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 742912
+2024-10-03 20:01:33.001 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:46.432
+2024-10-03 20:01:33.301 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 20:01:52.804 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:30.000
