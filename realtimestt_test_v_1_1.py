@@ -85,7 +85,7 @@ if __name__ == '__main__':
     # Recorder configuration
     recorder_config = {
         'spinner': False,
-        'model': 'tiny.en',
+        'model': 'large-v2',
         # 'input_device_index': 1,
         'realtime_model_type': 'tiny.en',
         'language': 'en',
@@ -99,7 +99,7 @@ if __name__ == '__main__':
         #'on_realtime_transcription_update': text_detected,
         'on_realtime_transcription_stabilized': text_detected,
         'silero_deactivity_detection': True,
-        'early_transcription_on_silence': 0.2,
+        'early_transcription_on_silence': 0,
         'beam_size': 5,
         'beam_size_realtime': 1,
         'no_log_file': False,
