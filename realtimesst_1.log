@@ -1,0 +1,53 @@
+2024-10-03 05:32:23.343 - RealTimeSTT: root - INFO - Starting RealTimeSTT
+2024-10-03 05:32:23.354 - RealTimeSTT: root - INFO - Initializing audio recording (creating pyAudio input stream, sample rate: 16000 buffer size: 512
+2024-10-03 05:32:23.362 - RealTimeSTT: root - INFO - Initializing faster_whisper realtime transcription model tiny.en
+2024-10-03 05:32:23.699 - RealTimeSTT: urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+2024-10-03 05:32:24.028 - RealTimeSTT: urllib3.connectionpool - DEBUG - https://huggingface.co:443 "GET /api/models/Systran/faster-whisper-tiny.en/revision/main HTTP/11" 200 871
+2024-10-03 05:32:24.414 - RealTimeSTT: root - DEBUG - Faster_whisper realtime speech to text transcription model initialized successfully
+2024-10-03 05:32:24.414 - RealTimeSTT: root - INFO - Initializing WebRTC voice with Sensitivity 3
+2024-10-03 05:32:24.414 - RealTimeSTT: root - DEBUG - WebRTC VAD voice activity detection engine initialized successfully
+2024-10-03 05:32:25.364 - RealTimeSTT: root - DEBUG - Silero VAD voice activity detection engine initialized successfully
+2024-10-03 05:32:25.366 - RealTimeSTT: root - DEBUG - Starting realtime worker
+2024-10-03 05:32:25.366 - RealTimeSTT: root - DEBUG - Waiting for main transcription model to start
+2024-10-03 05:32:35.581 - RealTimeSTT: root - DEBUG - Main transcription model ready
+2024-10-03 05:32:35.581 - RealTimeSTT: root - DEBUG - RealtimeSTT initialization completed successfully
+2024-10-03 05:32:35.582 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-03 05:32:35.582 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-03 05:32:35.582 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-03 05:32:37.771 - RealTimeSTT: root - INFO - voice activity detected
+2024-10-03 05:32:37.771 - RealTimeSTT: root - INFO - recording started
+2024-10-03 05:32:37.771 - RealTimeSTT: root - INFO - State changed from 'listening' to 'recording'
+2024-10-03 05:32:37.772 - RealTimeSTT: root - DEBUG - Waiting for recording stop
+2024-10-03 05:32:37.874 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 17920
+2024-10-03 05:32:37.874 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:01.120
+2024-10-03 05:32:37.947 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 05:32:38.743 - RealTimeSTT: root - DEBUG - Realtime text detected:  that quick
+2024-10-03 05:32:38.844 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 33280
+2024-10-03 05:32:38.844 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:02.080
+2024-10-03 05:32:38.925 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 05:32:39.914 - RealTimeSTT: root - DEBUG - Realtime text detected:  That quick brown fog.
+2024-10-03 05:32:40.016 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 52736
+2024-10-03 05:32:40.016 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:03.296
+2024-10-03 05:32:40.133 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 05:32:41.294 - RealTimeSTT: root - DEBUG - Realtime text detected:  That quick brown fox jumps off.
+2024-10-03 05:32:41.395 - RealTimeSTT: root - DEBUG - Current realtime buffer size: 74240
+2024-10-03 05:32:41.396 - RealTimeSTT: faster_whisper - INFO - Processing audio with duration 00:04.640
+2024-10-03 05:32:41.506 - RealTimeSTT: faster_whisper - DEBUG - Processing segment at 00:00.000
+2024-10-03 05:32:42.183 - RealTimeSTT: root - INFO - recording stopped
+2024-10-03 05:32:42.183 - RealTimeSTT: root - INFO - State changed from 'recording' to 'listening'
+2024-10-03 05:32:42.184 - RealTimeSTT: root - INFO - State changed from 'listening' to 'inactive'
+2024-10-03 05:32:42.184 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'transcribing'
+2024-10-03 05:32:42.184 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 3
+2024-10-03 05:32:42.250 - RealTimeSTT: root - INFO - State changed from 'transcribing' to 'inactive'
+2024-10-03 05:32:42.702 - RealTimeSTT: root - DEBUG - Realtime text detected:  That quick brown fox jumps over the laser.
+2024-10-03 05:33:20.555 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 2
+2024-10-03 05:34:02.878 - RealTimeSTT: root - DEBUG - Receive from parent_transcription_pipe after sendiung transcription request, transcribe_count: 1
+2024-10-03 05:34:45.635 - RealTimeSTT: root - INFO - Setting listen time
+2024-10-03 05:34:45.635 - RealTimeSTT: root - INFO - State changed from 'inactive' to 'listening'
+2024-10-03 05:34:45.636 - RealTimeSTT: root - DEBUG - Waiting for recording start
+2024-10-03 05:34:54.990 - RealTimeSTT: root - INFO - KeyboardInterrupt in wait_audio, shutting down
+2024-10-03 05:34:54.991 - RealTimeSTT: root - DEBUG - Finishing recording thread
+2024-10-03 05:34:55.006 - RealTimeSTT: root - DEBUG - Terminating reader process
+2024-10-03 05:34:55.693 - RealTimeSTT: root - DEBUG - Terminating transcription process
+2024-10-03 05:34:56.377 - RealTimeSTT: root - DEBUG - Finishing realtime thread
+2024-10-03 05:34:56.489 - RealTimeSTT: root - INFO - KeyboardInterrupt in text() method

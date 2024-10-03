@@ -85,7 +85,7 @@ if __name__ == '__main__':
     # Recorder configuration
     recorder_config = {
         'spinner': False,
-        'model': 'large-v2',
+        'model': 'tiny.en',
         # 'input_device_index': 1,
         'realtime_model_type': 'tiny.en',
         'language': 'en',
@@ -102,7 +102,7 @@ if __name__ == '__main__':
         'early_transcription_on_silence': 0.2,
         'beam_size': 5,
         'beam_size_realtime': 1,
-        'no_log_file': True,
+        'no_log_file': False,
     }
 
     if EXTENDED_LOGGING:
