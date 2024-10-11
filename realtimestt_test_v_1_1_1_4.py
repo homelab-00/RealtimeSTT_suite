@@ -133,6 +133,7 @@ if __name__ == '__main__':
 
     # Global Flags
     microphone_enabled = True  # Start with microphone enabled
+    typing_enabled = True  # Start with typing enabled
 
     def text_detected(text):
         global prev_text, displayed_text, rich_text_stored
@@ -172,7 +173,7 @@ if __name__ == '__main__':
 
 
     def process_text(text):
-        global recorder, full_sentences, prev_text, microphone_enabled
+        global recorder, full_sentences, prev_text, typing_enabled
         recorder.post_speech_silence_duration = unknown_sentence_detection_pause
         text = preprocess_text(text)
         text = text.rstrip()
@@ -183,8 +184,8 @@ if __name__ == '__main__':
         prev_text = ""
         text_detected("")
 
-        # Type the finalized sentence to the active window quickly if microphone is enabled
-        if microphone_enabled:
+        # Type the finalized sentence to the active window quickly if typing is enabled
+        if typing_enabled:
             try:
                 pyautogui.typewrite(text + ' ', interval=0.01)
             except Exception as e:
@@ -243,10 +244,27 @@ if __name__ == '__main__':
         else:
             console.print("[bold yellow]Microphone is already disabled.[/bold yellow]")
 
+    def enable_typing():
+        global typing_enabled
+        if not typing_enabled:
+            typing_enabled = True
+            console.print("[bold green]Typing enabled.[/bold green]")
+        else:
+            console.print("[bold yellow]Typing is already enabled.[/bold yellow]")
+
+    def disable_typing():
+        global typing_enabled
+        if typing_enabled:
+            typing_enabled = False
+            console.print("[bold red]Typing disabled.[/bold red]")
+        else:
+            console.print("[bold yellow]Typing is already disabled.[/bold yellow]")
+
     def hotkey_listener():
         keyboard.add_hotkey('ctrl+1', enable_microphone)
         keyboard.add_hotkey('ctrl+2', disable_microphone)
-        # Removed Ctrl + 3 functionality
+        keyboard.add_hotkey('ctrl+3', enable_typing)
+        keyboard.add_hotkey('ctrl+4', disable_typing)
         keyboard.wait()  # Block forever, as hotkeys are handled in callbacks
 
     # Start the hotkey listener in a separate daemon thread

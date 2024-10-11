@@ -132,8 +132,8 @@ if __name__ == '__main__':
 
 
     # Global Flags
-    microphone_enabled = True  # Start with microphone enabled
-
+    microphone_disabled = False  # Start with microphone enabled
+    
     def text_detected(text):
         global prev_text, displayed_text, rich_text_stored
 
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
 
     def process_text(text):
-        global recorder, full_sentences, prev_text, microphone_enabled
+        global recorder, full_sentences, prev_text
         recorder.post_speech_silence_duration = unknown_sentence_detection_pause
         text = preprocess_text(text)
         text = text.rstrip()
@@ -183,12 +183,11 @@ if __name__ == '__main__':
         prev_text = ""
         text_detected("")
 
-        # Type the finalized sentence to the active window quickly if microphone is enabled
-        if microphone_enabled:
-            try:
-                pyautogui.typewrite(text + ' ', interval=0.01)
-            except Exception as e:
-                console.print(f"[bold red]Failed to type the text: {e}[/bold red]")
+        # Type the finalized sentence to the active window quickly
+        try:
+            pyautogui.typewrite(text + ' ', interval=0.01)
+        except Exception as e:
+            console.print(f"[bold red]Failed to type the text: {e}[/bold red]")
 
 
     # Recorder configuration
@@ -225,28 +224,27 @@ if __name__ == '__main__':
 
     # Global Hotkey Functionality
 
-    def enable_microphone():
-        global microphone_enabled, recorder
-        if not microphone_enabled:
-            microphone_enabled = True
-            recorder.is_recording = True  # Resume the recorder
-            console.print("[bold green]Microphone enabled.[/bold green]")
-        else:
-            console.print("[bold yellow]Microphone is already enabled.[/bold yellow]")
-
     def disable_microphone():
-        global microphone_enabled, recorder
-        if microphone_enabled:
-            microphone_enabled = False
-            recorder.is_recording = False  # Pause the recorder
-            console.print("[bold red]Microphone disabled.[/bold red]")
-        else:
+        global microphone_disabled, recorder
+        if microphone_disabled:
             console.print("[bold yellow]Microphone is already disabled.[/bold yellow]")
+        else:
+            microphone_disabled = True
+            recorder.is_recording = True  # Resume the recorder
+            console.print("[bold red]Microphone disabled.[/bold red]")
+
+    def enable_microphone():
+        global microphone_disabled, recorder
+        if not microphone_disabled:
+            console.print("[bold yellow]Microphone is already enabled.[/bold yellow]")
+        else:
+            microphone_disabled = False
+            recorder.is_recording = False  # Pause the recorder
+            console.print("[bold green]Microphone enabled.[/bold green]")
 
     def hotkey_listener():
         keyboard.add_hotkey('ctrl+1', enable_microphone)
         keyboard.add_hotkey('ctrl+2', disable_microphone)
-        # Removed Ctrl + 3 functionality
         keyboard.wait()  # Block forever, as hotkeys are handled in callbacks
 
     # Start the hotkey listener in a separate daemon thread
