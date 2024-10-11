@@ -1,1 +1,4 @@
-/Github_Archive/
+__pycache__/
+.vscode/
+Github_Archive/
+.pytest_cache/
