@@ -29,7 +29,6 @@ Author: Kolja Beigel
 from typing import Iterable, List, Optional, Union
 import torch.multiprocessing as mp
 import torch
-from typing import List, Union
 from ctypes import c_bool
 from openwakeword.model import Model
 from scipy.signal import resample
@@ -49,6 +48,7 @@ import platform
 import pyaudio
 import logging
 import struct
+import base64
 import queue
 import halo
 import time
@@ -122,9 +122,8 @@ class TranscriptionWorker:
 
     def run(self):
         if __name__ == "__main__":
-             system_signal.signal(system_signal.SIGINT, system_signal.SIG_IGN)      
-
-        __builtins__['print'] = self.custom_print
+             system_signal.signal(system_signal.SIGINT, system_signal.SIG_IGN)
+            # __builtins__['print'] = self.custom_print
 
         logging.info(f"Initializing faster_whisper main transcription model {self.model_path}")
 
@@ -173,7 +172,7 @@ class TranscriptionWorker:
                 except Exception as e:
                     logging.error(f"General error in processing queue item: {e}")
         finally:
-            __builtins__['print'] = print  # Restore the original print function
+            # __builtins__['print'] = print  # Restore the original print function
             self.conn.close()
             self.stdout_pipe.close()
             self.shutdown_event.set()  # Ensure the polling thread will stop
@@ -541,6 +540,7 @@ class AudioToTextRecorder:
         self.start_recording_event = threading.Event()
         self.stop_recording_event = threading.Event()
         self.last_transcription_bytes = None
+        self.last_transcription_bytes_b64 = None
         self.initial_prompt = initial_prompt
         self.suppress_tokens = suppress_tokens
         self.use_wake_words = wake_words or wakeword_backend in {'oww', 'openwakeword', 'openwakewords'}
@@ -788,6 +788,10 @@ class AudioToTextRecorder:
             maxlen=int((self.sample_rate // self.buffer_size) *
                        self.pre_recording_buffer_duration)
         )
+        self.last_words_buffer = collections.deque(
+            maxlen=int((self.sample_rate // self.buffer_size) *
+                       0.3)
+        )
         self.frames = []
 
         # Recording control flags
@@ -988,13 +992,16 @@ class AudioToTextRecorder:
                         stream = initialize_audio_stream(audio_interface, input_device_index, device_sample_rate, chunk_size)
                         if stream is not None:
                             logging.debug(f"Audio recording initialized successfully at {device_sample_rate} Hz, reading {chunk_size} frames at a time")
+                            # logging.error(f"Audio recording initialized successfully at {device_sample_rate} Hz, reading {chunk_size} frames at a time")
                             return True
                     except Exception as e:
-                        logging.warning(f"Failed to initialize audio stream at {device_sample_rate} Hz: {e}")
+                        logging.warning(f"Failed to initialize audio23 stream at {device_sample_rate} Hz: {e}")
                         continue
+                    
+                    
 
                 # If we reach here, none of the sample rates worked
-                raise Exception("Failed to initialize audio stream with all sample rates.")
+                raise Exception("Failed to initialize audio stream12 with all sample rates.")
 
             except Exception as e:
                 logging.exception(f"Error initializing pyaudio audio recording: {e}")
@@ -1202,7 +1209,7 @@ class AudioToTextRecorder:
                 if self.transcribe_count == 0:
                     logging.debug("Adding transcription request, no early transcription started")
                     start_time = time.time()  # Start timing
-                    self.parent_transcription_pipe.send((self.audio, self.language))
+                    self.parent_transcription_pipe.send((audio_copy, self.language))
                     self.transcribe_count += 1
 
                 while self.transcribe_count > 0:
@@ -1216,7 +1223,8 @@ class AudioToTextRecorder:
                     segments, info = result
                     self.detected_language = info.language if info.language_probability > 0 else None
                     self.detected_language_probability = info.language_probability
-                    self.last_transcription_bytes = audio_copy
+                    self.last_transcription_bytes = copy.deepcopy(audio_copy)                    
+                    self.last_transcription_bytes_b64 = base64.b64encode(self.last_transcription_bytes.tobytes()).decode('utf-8')
                     transcription = self._preprocess_output(segments)
                     end_time = time.time()  # End timing
                     transcription_time = end_time - start_time
@@ -1381,6 +1389,17 @@ class AudioToTextRecorder:
 
         return self
 
+    def listen(self):
+        """
+        Puts recorder in immediate "listen" state.
+        This is the state after a wake word detection, for example.
+        The recorder now "listens" for voice activation.
+        Once voice is detected we enter "recording" state.
+        """
+        self.listen_start = time.time()
+        self._set_state("listening")
+        self.start_recording_on_voice_activity = True
+
     def feed_audio(self, chunk, original_sample_rate=16000):
         """
         Feed an audio chunk into the processing pipeline. Chunks are
@@ -1457,14 +1476,14 @@ class AudioToTextRecorder:
             logging.debug('Terminating reader process')
 
             # Give it some time to finish the loop and cleanup.
-            if self.use_microphone:
+            if self.use_microphone.value:
                 self.reader_process.join(timeout=10)
 
-            if self.reader_process.is_alive():
-                logging.warning("Reader process did not terminate "
-                                "in time. Terminating forcefully."
-                                )
-                self.reader_process.terminate()
+                if self.reader_process.is_alive():
+                    logging.warning("Reader process did not terminate "
+                                    "in time. Terminating forcefully."
+                                    )
+                    self.reader_process.terminate()
 
             logging.debug('Terminating transcription process')
             self.transcript_process.join(timeout=10)
@@ -1525,6 +1544,7 @@ class AudioToTextRecorder:
                         logging.debug('Debug: Trying to get data from audio queue')
                     try:
                         data = self.audio_queue.get(timeout=0.01)
+                        self.last_words_buffer.append(data)
                     except queue.Empty:
                         if self.use_extended_logging:
                             logging.debug('Debug: Queue is empty, checking if still running')
@@ -1822,10 +1842,6 @@ class AudioToTextRecorder:
 
                                 if self.use_extended_logging:
                                     logging.debug('Debug: Handling non-wake word scenario')
-                                if not self.use_wake_words:
-                                    self.listen_start = time.time()
-                                    self._set_state("listening")
-                                    self.start_recording_on_voice_activity = True
                             else:
                                 if self.use_extended_logging:
                                     logging.debug('Debug: Setting failed_stop_attempt to True')
