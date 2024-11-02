@@ -2,6 +2,7 @@ __pycache__/
 .vscode/
 Github_Archive/
 .pytest_cache/
-LLMs/text_to_summarize.txt
+text_to_summarize.txt
 recording.wav
 transcribed_audio.txt
+response_output.txt
