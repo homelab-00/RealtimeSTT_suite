@@ -32,7 +32,7 @@ if __name__ == '__main__':
 
     recorder_config = {
         'spinner': False,
-        'model': 'Systran/faster-whisper-large-v3',  # Model to use
+        'model': 'large-v3',  # Systran/faster-whisper-large-v3 or ...
         'language': 'el',
         'silero_sensitivity': 0.05,
         'webrtc_sensitivity': 3,
