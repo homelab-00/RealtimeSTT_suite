@@ -2,4 +2,6 @@ __pycache__/
 .vscode/
 Github_Archive/
 .pytest_cache/
-LanguageTool-6.5/
+recording.wav
+text_to_summarize.txt
+transcribed_audio.txt
