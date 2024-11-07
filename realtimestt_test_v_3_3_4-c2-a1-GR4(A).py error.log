@@ -1,0 +1,14 @@
+ERROR:root:Error receiving data from connection:
+Exception in thread Thread-2 (poll_connection):
+Traceback (most recent call last):
+  File "C:\Program Files\Python310\lib\threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "C:\Program Files\Python310\lib\threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "c:\Users\Bill\VSC_WorkingDirectory\RealtimeSTT\STT\audio_recorder_v_1_0.py", line 114, in poll_connection
+    if self.conn.poll(0.01):
+  File "C:\Program Files\Python310\lib\multiprocessing\connection.py", line 257, in poll
+    return self._poll(timeout)
+  File "C:\Program Files\Python310\lib\multiprocessing\connection.py", line 328, in _poll
+    _winapi.PeekNamedPipe(self._handle)[0] != 0):
+BrokenPipeError: [WinError 109] The pipe has been ended

@@ -50,10 +50,10 @@ PACKAGES:
 Before beginning installing packages it might be a good idea to upgrade the default packages that come with the
 environment (they should only be pip and maybe setuptools).
 To do that run:
-`python.exe -m pip list`                    To see all packages already installed (like I said, they should only be pip and maybe setuptools)
-`python.exe -m pip install --upgrade pip`   To upgrade pip (similarly for setuptools)
+`python.exe -m pip list`                    To see all packages already installed (like I said, they should only be pip and maybe setuptools and wheel)
+`python.exe -m pip install --upgrade pip setuptools wheel`
 
-After that, first package I install is pytorch. I want to install pytorch 2.5.0 with the CUDA 12.4 integration. To do that (info from https://pytorch.org/):
+After that, first package I install is pytorch. I want to install pytorch 2.5.1 with the CUDA 12.4 integration. To do that (info from https://pytorch.org/):
 `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124`
 
 Then I install all the packages listed in the 'requirements.txt' file:

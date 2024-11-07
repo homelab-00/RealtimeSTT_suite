@@ -112,14 +112,21 @@ class TranscriptionWorker:
 
     def poll_connection(self):
         while not self.shutdown_event.is_set():
-            if self.conn.poll(0.01):
-                try:
-                    data = self.conn.recv()
-                    self.queue.put(data)
-                except Exception as e:
-                    logging.error(f"Error receiving data from connection: {e}")
-            else:
-                time.sleep(TIME_SLEEP)
+            try:
+                if self.conn.poll(0.01):
+                    try:
+                        data = self.conn.recv()
+                        self.queue.put(data)
+                    except Exception as e:
+                        logging.error(f"Error receiving data from connection: {e}")
+                else:
+                    time.sleep(TIME_SLEEP)
+            except (BrokenPipeError, EOFError):
+                # The connection has been closed; exit the thread
+                break
+            except Exception as e:
+                logging.error(f"Exception in poll_connection: {e}")
+                break
 
     def run(self):
         if __name__ == "__main__":
@@ -174,10 +181,10 @@ class TranscriptionWorker:
                     logging.error(f"General error in processing queue item: {e}")
         finally:
             __builtins__['print'] = print  # Restore the original print function
+            self.shutdown_event.set()      # Signal the polling thread to exit
+            polling_thread.join()          # Wait for the polling thread to finish
             self.conn.close()
             self.stdout_pipe.close()
-            self.shutdown_event.set()  # Ensure the polling thread will stop
-            polling_thread.join()  # Wait for the polling thread to finish
 
 
 class bcolors:
