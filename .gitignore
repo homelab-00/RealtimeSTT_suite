@@ -2,8 +2,10 @@ __pycache__/
 .vscode/
 Github_Archive/
 .pytest_cache/
+STT/temp_audio_file.wav
 text_to_summarize.txt
 recording.wav
+recording.bak.wav
 transcribed_audio.txt
 response_output.txt
 pkg_list_order.py
