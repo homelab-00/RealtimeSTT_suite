@@ -54,7 +54,7 @@ def toggle_paste():
     global paste_enabled
     paste_enabled = not paste_enabled
     status = "enabled" if paste_enabled else "disabled"
-    console.print(f"[italic green]Paste[/italic green] [italic]{status}.[/italic]")
+    console.print(f"[bold yellow]Paste {status}.[/bold yellow]")
 
 def start_recording():
     global recording, temp_file, stream, wave_file, recording_thread

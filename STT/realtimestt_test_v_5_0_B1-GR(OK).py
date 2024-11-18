@@ -149,9 +149,9 @@ if __name__ == '__main__':
     recorder_config = {
         'spinner': False,
 
-        'model': 'Decoder953/whisper-large-v2-greek-CT2-FP32',
-        # or r"C:\Users\Bill\VSC_WorkingDirectory\RealtimeSTT\whisper-large-v2-greek-ctranslate2"
-        # or 'Decoder953/whisper-large-v2-greek-CT2-FP16' or ...
+        'model': 'Decoder953/whisper-large-v2-greek-CT2-FP16',
+        # or r"C:\Users\Bill\VSC_WorkingDirectory\RealtimeSTT\whisper-large-v2-greek-ctranslate2" or 'Decoder953/whisper-large-v2-greek-CT2-FP16' or ...
+        # Note for 'Decoder953/whisper-large-v2-greek-CT2-FP16': Since 'compute_type' is 'float16', the model should be FP16 I think
         # Note: The distil models will auto translate to English
 
         # 'input_device_index': 1,
