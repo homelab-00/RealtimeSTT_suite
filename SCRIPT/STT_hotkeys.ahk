@@ -42,6 +42,11 @@ SendCommand(command) {
     }
 }
 
+; F1 - Open Configuration Dialog
+*F1::
+    SendCommand("OPEN_CONFIG")
+return
+
 ; F2 - Toggle Real-time Transcription
 *F2::
     SendCommand("TOGGLE_REALTIME")

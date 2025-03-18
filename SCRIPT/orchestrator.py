@@ -214,6 +214,53 @@ class STTOrchestrator:
         except Exception as e:
             self.log_error(f"Error saving configuration: {e}")
 
+    def _open_config_dialog(self):
+        """Open the configuration dialog."""
+        safe_print("Opening configuration dialog...")
+        
+        # Check if any transcription is active
+        if self.current_mode:
+            safe_print(f"Warning: Transcription in {self.current_mode} mode is active.")
+            # We'll still allow opening the dialog, but warn the user
+        
+        # Import the configuration dialog module
+        try:
+            # Add the script directory to sys.path if it's not already there
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            if script_dir not in sys.path:
+                sys.path.append(script_dir)
+                
+            from configuration_dialog_box_module import ConfigurationDialog
+            
+            # Create and show the dialog
+            dialog = ConfigurationDialog(
+                config_path=self.config_path,
+                callback=self._config_updated
+            )
+            
+            result = dialog.show_dialog()
+            
+            # If the user clicked Apply
+            if result:
+                self.log_info("Configuration dialog closed with Apply")
+            else:
+                self.log_info("Configuration dialog closed without saving")
+                
+        except Exception as e:
+            self.log_error(f"Error opening configuration dialog: {e}")
+            safe_print(f"Error opening configuration dialog: {e}")
+
+    def _config_updated(self, new_config):
+        """Handle configuration updates."""
+        self.log_info("Configuration updated")
+        self.config = new_config
+        
+        # If any transcribers are active, inform the user about restart
+        if self.current_mode:
+            safe_print("Configuration updated. Changes will take effect after restarting transcribers.")
+        else:
+            safe_print("Configuration updated successfully.")
+
     def import_module_lazily(self, module_name):
         """Import a module only when needed."""
         if module_name in self.modules and self.modules[module_name]:
@@ -504,7 +551,9 @@ class STTOrchestrator:
     def _handle_command(self, command):
         """Process commands received from AutoHotkey."""
         try:
-            if command == "TOGGLE_REALTIME":
+            if command == "OPEN_CONFIG":
+                self._open_config_dialog()
+            elif command == "TOGGLE_REALTIME":
                 # Unload current model if it's not realtime
                 if self.current_loaded_model_type and self.current_loaded_model_type != "realtime":
                     self._unload_current_model()
