@@ -105,7 +105,10 @@ class LongFormTranscriber:
                  early_transcription_on_silence: int = 0,
                  allowed_latency_limit: int = 100,
                  no_log_file: bool = True,
-                 use_extended_logging: bool = False):
+                 use_extended_logging: bool = False,
+
+                # Additional parameters
+                 preload_model=False):
         """
         Initialize the transcriber with all available parameters.
         """
@@ -184,11 +187,26 @@ class LongFormTranscriber:
         
         # Lazy-loaded recorder
         self.recorder = None
-    
+
+        # If preload_model is True, initialize the recorder immediately
+        if preload_model:
+            self._initialize_recorder()
+
+    def force_initialize(self):
+        """Force initialization of the recorder to preload the model."""
+        try:
+            return self._initialize_recorder() is not None
+        except Exception as e:
+            if has_rich:
+                console.print(f"[bold red]Error in force initialization: {str(e)}[/bold red]")
+            else:
+                print(f"Error in force initialization: {str(e)}")
+            return False
+
     def _initialize_recorder(self):
         """Lazy initialization of the recorder."""
         if self.recorder is not None:
-            return
+            return self.recorder  # Return the recorder if already initialized
             
         # Create custom recording callbacks that update our internal state
         def on_rec_start():
@@ -205,16 +223,25 @@ class LongFormTranscriber:
         self.config['on_recording_start'] = on_rec_start
         self.config['on_recording_stop'] = on_rec_stop
         
-        # Now import the module
-        from RealtimeSTT import AudioToTextRecorder
-        
-        # Initialize the recorder with all parameters
-        self.recorder = AudioToTextRecorder(**self.config)
-        
-        if has_rich:
-            console.print("[bold green]Long-form transcription system initialized.[/bold green]")
-        else:
-            print("Long-form transcription system initialized.")
+        try:
+            # Now import the module
+            from RealtimeSTT import AudioToTextRecorder
+            
+            # Initialize the recorder with all parameters
+            self.recorder = AudioToTextRecorder(**self.config)
+            
+            if has_rich:
+                console.print("[bold green]Long-form transcription system initialized.[/bold green]")
+            else:
+                print("Long-form transcription system initialized.")
+                
+            return self.recorder  # Return the recorder if initialization succeeded
+        except Exception as e:
+            if has_rich:
+                console.print(f"[bold red]Error initializing recorder: {str(e)}[/bold red]")
+            else:
+                print(f"Error initializing recorder: {str(e)}")
+            return None
     
     def start_recording(self):
         """

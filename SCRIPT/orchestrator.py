@@ -155,7 +155,8 @@ class STTOrchestrator:
                 self.transcribers[module_type] = module.LongFormTranscriber(
                     start_hotkey="",
                     stop_hotkey="",
-                    quit_hotkey=""
+                    quit_hotkey="",
+                    preload_model=True  # Add this parameter to fully preload
                 )
                 
             elif module_type == "static":
@@ -484,7 +485,14 @@ class STTOrchestrator:
         safe_print("Pre-loading the long-form transcription model...")
         longform_transcriber = self.initialize_transcriber("longform")
         if longform_transcriber:
-            safe_print("Long-form transcription model loaded successfully and ready to use.")
+            # Force complete initialization including the AudioToTextRecorder
+            if hasattr(longform_transcriber, 'force_initialize'):
+                if longform_transcriber.force_initialize():
+                    safe_print("Long-form transcription model fully loaded and ready to use.")
+                else:
+                    safe_print("Failed to fully initialize the long-form transcription model.")
+            else:
+                safe_print("Long-form transcription model loaded but may require additional initialization on first use.")
         else:
             safe_print("Failed to pre-load the long-form transcription model.")
         
@@ -529,9 +537,9 @@ class STTOrchestrator:
         try:
             if not self.running:
                 return
-                
+
             self.running = False
-            
+
             # Stop any active transcription mode
             try:
                 if self.current_mode == "realtime" and "realtime" in self.transcribers:
@@ -543,21 +551,21 @@ class STTOrchestrator:
                     pass
             except Exception as e:
                 self.log_error(f"Error stopping active mode: {e}")
-            
+
             # Stop the AutoHotkey script
             self.stop_ahk_script()
-            
+
             # Only try to join the server thread if we're not currently in it
             current_thread_id = threading.get_ident()
             server_thread_id = self.server_thread.ident if self.server_thread else None
-            
+
             try:
                 if (self.server_thread and self.server_thread.is_alive() and 
                     current_thread_id != server_thread_id):
                     self.server_thread.join(timeout=2)
             except Exception as e:
                 self.log_error(f"Error joining server thread: {e}")
-            
+
             # Clean up resources
             for module_type, transcriber in self.transcribers.items():
                 try:
@@ -567,9 +575,9 @@ class STTOrchestrator:
                         transcriber.clean_up()
                 except Exception as e:
                     self.log_error(f"Error cleaning up {module_type} transcriber: {e}")
-                    
+
             self.log_info("Orchestrator stopped successfully")
-            
+
         except Exception as e:
             self.log_error(f"Error during shutdown: {e}")
 
