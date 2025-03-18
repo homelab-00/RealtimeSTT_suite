@@ -90,6 +90,7 @@ class STTOrchestrator:
         """Initialize the orchestrator."""
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.config_path = os.path.join(self.script_dir, "config.json")
+        self.current_loaded_model_type = None
         
         # Application state
         self.running = False
@@ -246,50 +247,51 @@ class STTOrchestrator:
     def initialize_transcriber(self, module_type):
         """Initialize a transcriber only when needed."""
         if module_type in self.transcribers and self.transcribers[module_type]:
+            self.current_loaded_model_type = module_type
             return self.transcribers[module_type]
-    
+
         module = self.import_module_lazily(module_type)
         if not module:
             self.log_error(f"Failed to import {module_type} module")
             return None
-    
+
         try:
             # Get configuration for this module
             module_config = self.config.get(module_type, {})
-    
+
             # Check if we can reuse an existing model
             current_model_name = module_config.get("model", "Systran/faster-whisper-large-v3")
             preinitialized_model = None
-            
+
             # Look for an existing model with the same name
             for model_type, model_info in self.loaded_models.items():
                 if model_info['name'] == current_model_name:
                     safe_print(f"Reusing already loaded {model_type} model for {module_type}")
-                    
+
                     # Get the model instance from the existing transcriber
                     if model_type == "longform":
                         # For longform transcriber
                         if hasattr(model_info['transcriber'], 'recorder') and model_info['transcriber'].recorder:
                             preinitialized_model = True  # Just a flag that we're reusing
-                            
+
                     elif model_type == "realtime":
                         # For realtime transcriber
                         if hasattr(model_info['transcriber'], 'recorder') and model_info['transcriber'].recorder:
                             preinitialized_model = True  # Just a flag that we're reusing
-                            
+
                     elif model_type == "static":
                         # For static transcriber
                         if hasattr(model_info['transcriber'], 'whisper_model'):
                             preinitialized_model = model_info['transcriber'].whisper_model
-                    
+
                     break
-                
+
             # Use a different initialization approach for each module type
             if module_type == "realtime":
                 safe_print(f"Initializing real-time transcriber...")
                 # Force disable real-time preview functionality
                 module_config["enable_realtime_transcription"] = False
-    
+
                 # Pass all configuration parameters
                 self.transcribers[module_type] = module.LongFormTranscriber(
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
@@ -320,7 +322,7 @@ class STTOrchestrator:
                     realtime_batch_size=module_config.get("realtime_batch_size", 16),
                     preinitialized_model=preinitialized_model  # Pass the model or flag
                 )
-    
+
             elif module_type == "longform":
                 safe_print(f"Initializing long-form transcriber...")
                 # Pass all configuration parameters
@@ -348,7 +350,7 @@ class STTOrchestrator:
                     preload_model=True,
                     preinitialized_model=preinitialized_model  # Pass the model or flag
                 )
-    
+
             elif module_type == "static":
                 safe_print(f"Initializing static file transcriber...")
                 self.transcribers[module_type] = module.DirectFileTranscriber(
@@ -363,20 +365,61 @@ class STTOrchestrator:
                     vad_aggressiveness=module_config.get("vad_aggressiveness", 2),
                     preinitialized_model=preinitialized_model  # Pass the actual model instance
                 )
-    
+
             # Store the loaded model information
             if module_type not in self.loaded_models:
                 self.loaded_models[module_type] = {
                     'name': current_model_name,
                     'transcriber': self.transcribers[module_type]
                 }
-    
+
             self.log_info(f"{module_type.capitalize()} transcriber initialized successfully")
+            self.current_loaded_model_type = module_type  # Update the tracking variable
             return self.transcribers[module_type]
-    
+
         except Exception as e:
             self.log_error(f"Error initializing {module_type} transcriber: {e}")
             return None
+    
+    def _unload_current_model(self):
+        """Unload the currently loaded model to free up memory."""
+        if not self.current_loaded_model_type:
+            return
+        try:
+            safe_print(f"Unloading {self.current_loaded_model_type} model...")
+
+            if self.current_loaded_model_type in self.transcribers:
+                transcriber = self.transcribers[self.current_loaded_model_type]
+
+                # Handle different transcribers differently
+                if self.current_loaded_model_type == "realtime":
+                    if hasattr(transcriber, 'recorder') and transcriber.recorder:
+                        transcriber.recorder = None
+                    transcriber.model_initialized = False
+
+                elif self.current_loaded_model_type == "longform":
+                    if hasattr(transcriber, 'recorder') and transcriber.recorder:
+                        transcriber.recorder = None
+
+                elif self.current_loaded_model_type == "static":
+                    if hasattr(transcriber, 'whisper_model'):
+                        transcriber.whisper_model = None
+
+                # Remove from loaded_models dictionary
+                if self.current_loaded_model_type in self.loaded_models:
+                    del self.loaded_models[self.current_loaded_model_type]
+
+                self.log_info(f"Successfully unloaded {self.current_loaded_model_type} model")
+
+            # Clear the tracking variable
+            self.current_loaded_model_type = None
+
+            # Force garbage collection to free up memory
+            import gc
+            gc.collect()
+
+        except Exception as e:
+            self.log_error(f"Error unloading model: {e}")
     
     def log_info(self, message):
         """Log an info message."""
@@ -427,12 +470,21 @@ class STTOrchestrator:
         """Process commands received from AutoHotkey."""
         try:
             if command == "TOGGLE_REALTIME":
+                # Unload current model if it's not realtime
+                if self.current_loaded_model_type and self.current_loaded_model_type != "realtime":
+                    self._unload_current_model()
                 self._toggle_realtime()
             elif command == "START_LONGFORM":
+                # Unload current model if it's not longform
+                if self.current_loaded_model_type and self.current_loaded_model_type != "longform":
+                    self._unload_current_model()
                 self._start_longform()
             elif command == "STOP_LONGFORM":
                 self._stop_longform()
             elif command == "RUN_STATIC":
+                # Unload current model if it's not static
+                if self.current_loaded_model_type and self.current_loaded_model_type != "static":
+                    self._unload_current_model()
                 self._run_static()
             elif command == "QUIT":
                 self._quit()
@@ -456,13 +508,16 @@ class STTOrchestrator:
                 transcriber = self.transcribers.get("realtime")
                 if transcriber:
                     transcriber.running = False
-                    # Don't call transcriber.stop() here, it will be called in the _run_realtime thread
                 self.current_mode = None
             except Exception as e:
                 self.log_error(f"Error stopping real-time transcription: {e}")
         else:
             # Start real-time transcription
             try:
+                # Make sure we're using the real-time model
+                if self.current_loaded_model_type != "realtime":
+                    self._unload_current_model()
+                    
                 # Initialize the real-time transcriber if not already done
                 transcriber = self.initialize_transcriber("realtime")
                 if not transcriber:
@@ -516,6 +571,10 @@ class STTOrchestrator:
             return
             
         try:
+            # Make sure we're using the long-form model
+            if self.current_loaded_model_type != "longform":
+                self._unload_current_model()
+                
             # Initialize the long-form transcriber if not already done
             transcriber = self.initialize_transcriber("longform")
             if not transcriber:
@@ -559,6 +618,10 @@ class STTOrchestrator:
             return
             
         try:
+            # Make sure we're using the static model
+            if self.current_loaded_model_type != "static":
+                self._unload_current_model()
+                
             # Initialize the static transcriber if not already done
             transcriber = self.initialize_transcriber("static")
             if not transcriber:
@@ -686,7 +749,9 @@ class STTOrchestrator:
             # Force complete initialization including the AudioToTextRecorder
             if hasattr(longform_transcriber, 'force_initialize'):
                 if longform_transcriber.force_initialize():
-                    # After this line, add:
+                    # Set the current loaded model type
+                    self.current_loaded_model_type = "longform"
+                    # Add to loaded_models dictionary
                     self.loaded_models['longform'] = {
                         'name': self.config['longform']['model'],
                         'transcriber': longform_transcriber

@@ -79,7 +79,7 @@ class LongFormTranscriber:
 
                 # Additional parameters
                  preinitialized_model=None,
-                 preload_model=False):
+                 preload_model=True):
         """
         Initialize the transcriber with all available parameters.
         """
@@ -163,26 +163,26 @@ class LongFormTranscriber:
         """Lazy initialization of the recorder."""
         if self.recorder is not None:
             return self.recorder  # Return the recorder if already initialized
-            
+
         # Create custom recording callbacks that update our internal state
         def on_rec_start():
             self.recording = True
             if self.external_on_recording_start:
                 self.external_on_recording_start()
-        
+
         def on_rec_stop():
             self.recording = False
             if self.external_on_recording_stop:
                 self.external_on_recording_stop()
-        
+
         # Set the custom callbacks
         self.config['on_recording_start'] = on_rec_start
         self.config['on_recording_stop'] = on_rec_stop
-        
+
         try:
             # Now import the module
             from RealtimeSTT import AudioToTextRecorder
-            
+
             # If we have a preinitialized model, we would use it here
             # However, RealtimeSTT doesn't directly support passing a model object
             # so we'll still use the model name but log that we're reusing
@@ -191,15 +191,15 @@ class LongFormTranscriber:
                     console.print("[bold green]Using pre-initialized model[/bold green]")
                 else:
                     print("Using pre-initialized model")
-            
+
             # Initialize the recorder with all parameters
             self.recorder = AudioToTextRecorder(**self.config)
-            
+
             if has_rich:
                 console.print("[bold green]Long-form transcription system initialized.[/bold green]")
             else:
                 print("Long-form transcription system initialized.")
-                
+
             return self.recorder  # Return the recorder if initialization succeeded
         except Exception as e:
             if has_rich:
