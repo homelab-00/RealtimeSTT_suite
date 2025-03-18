@@ -245,7 +245,8 @@ class STTOrchestrator:
             return None
     
     def initialize_transcriber(self, module_type):
-        """Initialize a transcriber only when needed."""
+        """Initialize a transcriber only when needed with improved cleanup."""
+        # If we already have this transcriber type loaded and ready
         if module_type in self.transcribers and self.transcribers[module_type]:
             self.current_loaded_model_type = module_type
             return self.transcribers[module_type]
@@ -382,42 +383,72 @@ class STTOrchestrator:
             return None
     
     def _unload_current_model(self):
-        """Unload the currently loaded model to free up memory."""
+        """Unload the currently loaded model to free up memory more aggressively."""
         if not self.current_loaded_model_type:
             return
+            
         try:
+            self.log_info(f"Aggressively unloading {self.current_loaded_model_type} model...")
             safe_print(f"Unloading {self.current_loaded_model_type} model...")
-
+            
             if self.current_loaded_model_type in self.transcribers:
                 transcriber = self.transcribers[self.current_loaded_model_type]
-
-                # Handle different transcribers differently
+                
+                # Handle different transcribers differently with more aggressive cleanup
                 if self.current_loaded_model_type == "realtime":
                     if hasattr(transcriber, 'recorder') and transcriber.recorder:
+                        # Call shutdown explicitly to clean up multiprocessing resources
+                        try:
+                            transcriber.recorder.abort()
+                            transcriber.recorder.shutdown()
+                        except Exception as e:
+                            self.log_error(f"Error during recorder shutdown: {e}")
+                        # Remove the recorder completely
                         transcriber.recorder = None
                     transcriber.model_initialized = False
-
+                    
                 elif self.current_loaded_model_type == "longform":
                     if hasattr(transcriber, 'recorder') and transcriber.recorder:
+                        # Clean up the recorder properly
+                        try:
+                            transcriber.recorder.abort()
+                            transcriber.recorder.shutdown()
+                        except Exception as e:
+                            self.log_error(f"Error during recorder shutdown: {e}")
                         transcriber.recorder = None
-
+                    
                 elif self.current_loaded_model_type == "static":
                     if hasattr(transcriber, 'whisper_model'):
+                        # Explicitly delete the model
+                        del transcriber.whisper_model
                         transcriber.whisper_model = None
-
+                
+                # Remove from transcribers dictionary to ensure complete cleanup
+                self.transcribers[self.current_loaded_model_type] = None
+                
                 # Remove from loaded_models dictionary
                 if self.current_loaded_model_type in self.loaded_models:
                     del self.loaded_models[self.current_loaded_model_type]
-
+                    
                 self.log_info(f"Successfully unloaded {self.current_loaded_model_type} model")
-
+            
             # Clear the tracking variable
             self.current_loaded_model_type = None
-
-            # Force garbage collection to free up memory
+            
+            # Force garbage collection multiple times to ensure memory is freed
             import gc
             gc.collect()
-
+            gc.collect()  # Second collection often helps with circular references
+            
+            # On CUDA systems, try to release CUDA memory explicitly
+            try:
+                import torch
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                    self.log_info("CUDA cache emptied")
+            except ImportError:
+                pass
+            
         except Exception as e:
             self.log_error(f"Error unloading model: {e}")
     
@@ -662,10 +693,27 @@ class STTOrchestrator:
             self.current_mode = None
     
     def _quit(self):
-        """Stop all processes and exit."""
+        """Stop all processes and exit with improved cleanup."""
         safe_print("Quitting application...")
+        
+        # Make sure any active mode is stopped first
+        if self.current_mode:
+            if self.current_mode == "realtime":
+                self._toggle_realtime()  # This will stop it if running
+            elif self.current_mode == "longform":
+                self._stop_longform()
+            elif self.current_mode == "static" and hasattr(self.transcribers.get("static", None), 'request_abort'):
+                self.transcribers["static"].request_abort()
+        
+        # Allow time for mode to stop
+        time.sleep(0.5)
+        
+        # Now do the full shutdown
         self.stop()
-        os._exit(0)  # Force exit
+        
+        # Force exit after a short delay to ensure clean shutdown
+        time.sleep(0.5)
+        os._exit(0)
     
     def _kill_leftover_ahk(self):
         """Kill any existing AHK processes using our script."""
@@ -795,24 +843,42 @@ class STTOrchestrator:
             self.stop()
     
     def stop(self):
-        """Stop all processes and clean up."""
+        """Stop all processes and clean up with improved resource handling."""
         try:
             if not self.running:
                 return
 
+            self.log_info("Beginning graceful shutdown sequence...")
             self.running = False
 
-            # Stop any active transcription mode
+            # First, stop any active transcription mode
             try:
                 if self.current_mode == "realtime" and "realtime" in self.transcribers:
+                    safe_print("Stopping realtime transcription...")
                     self.transcribers["realtime"].stop()
+                    # Give it a moment to finish cleanup
+                    time.sleep(0.5)
+                
                 elif self.current_mode == "longform" and "longform" in self.transcribers:
-                    self.transcribers["longform"].stop_recording()
-                elif self.current_mode == "static" and "static" in self.transcribers and hasattr(self.transcribers["static"], 'transcribing'):
-                    # Let it finish naturally
-                    pass
+                    safe_print("Stopping longform transcription...")
+                    if hasattr(self.transcribers["longform"], 'stop_recording'):
+                        self.transcribers["longform"].stop_recording()
+                    # Give it a moment to finish cleanup
+                    time.sleep(0.5)
+                    
+                elif self.current_mode == "static" and "static" in self.transcribers:
+                    safe_print("Stopping static transcription...")
+                    if hasattr(self.transcribers["static"], 'request_abort'):
+                        self.transcribers["static"].request_abort()
+                    # Give it a moment to finish cleanup
+                    time.sleep(0.5)
             except Exception as e:
                 self.log_error(f"Error stopping active mode: {e}")
+
+            # Explicitly unload any active model
+            if self.current_loaded_model_type:
+                self._unload_current_model()
+                time.sleep(0.5)  # Give it time to release resources
 
             # Stop the AutoHotkey script
             self.stop_ahk_script()
@@ -828,15 +894,40 @@ class STTOrchestrator:
             except Exception as e:
                 self.log_error(f"Error joining server thread: {e}")
 
-            # Clean up resources
-            for module_type, transcriber in self.transcribers.items():
+            # Clean up any remaining resources
+            for module_type, transcriber in list(self.transcribers.items()):
                 try:
-                    if module_type == "realtime":
-                        transcriber.stop()
-                    elif module_type == "longform" and hasattr(transcriber, 'recorder') and transcriber.recorder:
-                        transcriber.clean_up()
+                    if transcriber is not None:
+                        safe_print(f"Final cleanup of {module_type} transcriber...")
+                        
+                        if module_type == "realtime":
+                            if hasattr(transcriber, 'stop'):
+                                transcriber.stop()
+                        
+                        elif module_type == "longform":
+                            if hasattr(transcriber, 'clean_up'):
+                                transcriber.clean_up()
+                        
+                        elif module_type == "static":
+                            if hasattr(transcriber, 'cleanup'):
+                                transcriber.cleanup()
+                        
+                        # Remove the reference
+                        self.transcribers[module_type] = None
                 except Exception as e:
-                    self.log_error(f"Error cleaning up {module_type} transcriber: {e}")
+                    self.log_error(f"Error during final cleanup of {module_type} transcriber: {e}")
+
+            # Final garbage collection
+            try:
+                import gc
+                gc.collect()
+                gc.collect()
+                
+                import torch
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+            except Exception:
+                pass
 
             self.log_info("Orchestrator stopped successfully")
 
