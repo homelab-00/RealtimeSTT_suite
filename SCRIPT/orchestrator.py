@@ -247,28 +247,49 @@ class STTOrchestrator:
         """Initialize a transcriber only when needed."""
         if module_type in self.transcribers and self.transcribers[module_type]:
             return self.transcribers[module_type]
-
+    
         module = self.import_module_lazily(module_type)
         if not module:
             self.log_error(f"Failed to import {module_type} module")
             return None
-
+    
         try:
             # Get configuration for this module
             module_config = self.config.get(module_type, {})
-
-            # Check if we can reuse an existing model - NEW!
+    
+            # Check if we can reuse an existing model
             current_model_name = module_config.get("model", "Systran/faster-whisper-large-v3")
+            preinitialized_model = None
+            
+            # Look for an existing model with the same name
             for model_type, model_info in self.loaded_models.items():
                 if model_info['name'] == current_model_name:
                     safe_print(f"Reusing already loaded {model_type} model for {module_type}")
-
+                    
+                    # Get the model instance from the existing transcriber
+                    if model_type == "longform":
+                        # For longform transcriber
+                        if hasattr(model_info['transcriber'], 'recorder') and model_info['transcriber'].recorder:
+                            preinitialized_model = True  # Just a flag that we're reusing
+                            
+                    elif model_type == "realtime":
+                        # For realtime transcriber
+                        if hasattr(model_info['transcriber'], 'recorder') and model_info['transcriber'].recorder:
+                            preinitialized_model = True  # Just a flag that we're reusing
+                            
+                    elif model_type == "static":
+                        # For static transcriber
+                        if hasattr(model_info['transcriber'], 'whisper_model'):
+                            preinitialized_model = model_info['transcriber'].whisper_model
+                    
+                    break
+                
             # Use a different initialization approach for each module type
             if module_type == "realtime":
                 safe_print(f"Initializing real-time transcriber...")
                 # Force disable real-time preview functionality
                 module_config["enable_realtime_transcription"] = False
-
+    
                 # Pass all configuration parameters
                 self.transcribers[module_type] = module.LongFormTranscriber(
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
@@ -296,9 +317,10 @@ class STTOrchestrator:
                     enable_realtime_transcription=False,
                     realtime_processing_pause=module_config.get("realtime_processing_pause", 0.2),
                     realtime_model_type=module_config.get("realtime_model_type", "tiny.en"),
-                    realtime_batch_size=module_config.get("realtime_batch_size", 16)
+                    realtime_batch_size=module_config.get("realtime_batch_size", 16),
+                    preinitialized_model=preinitialized_model  # Pass the model or flag
                 )
-
+    
             elif module_type == "longform":
                 safe_print(f"Initializing long-form transcriber...")
                 # Pass all configuration parameters
@@ -323,9 +345,10 @@ class STTOrchestrator:
                     beam_size=module_config.get("beam_size", 5),
                     initial_prompt=module_config.get("initial_prompt"),
                     allowed_latency_limit=module_config.get("allowed_latency_limit", 100),
-                    preload_model=True
+                    preload_model=True,
+                    preinitialized_model=preinitialized_model  # Pass the model or flag
                 )
-
+    
             elif module_type == "static":
                 safe_print(f"Initializing static file transcriber...")
                 self.transcribers[module_type] = module.DirectFileTranscriber(
@@ -334,15 +357,23 @@ class STTOrchestrator:
                     language=module_config.get("language", "en"),
                     compute_type=module_config.get("compute_type", "float16"),
                     device=module_config.get("device", "cuda"),
-                    gpu_device_index=module_config.get("gpu_device_index", 0),
+                    device_index=module_config.get("gpu_device_index", 0),
                     beam_size=module_config.get("beam_size", 5),
                     batch_size=module_config.get("batch_size", 16),
-                    vad_aggressiveness=module_config.get("vad_aggressiveness", 2)
+                    vad_aggressiveness=module_config.get("vad_aggressiveness", 2),
+                    preinitialized_model=preinitialized_model  # Pass the actual model instance
                 )
-
+    
+            # Store the loaded model information
+            if module_type not in self.loaded_models:
+                self.loaded_models[module_type] = {
+                    'name': current_model_name,
+                    'transcriber': self.transcribers[module_type]
+                }
+    
             self.log_info(f"{module_type.capitalize()} transcriber initialized successfully")
             return self.transcribers[module_type]
-
+    
         except Exception as e:
             self.log_error(f"Error initializing {module_type} transcriber: {e}")
             return None

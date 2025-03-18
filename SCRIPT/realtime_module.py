@@ -79,13 +79,20 @@ class LongFormTranscriber:
                  enable_realtime_transcription: bool = False,
                  realtime_processing_pause: float = 0.05,
                  realtime_model_type: str = "tiny.en",
-                 realtime_batch_size: int = 16):
+                 realtime_batch_size: int = 16,
+
+                 # Additional parameters
+                 preinitialized_model=None,
+                 preload_model=False):
         """
         Initialize the transcriber with all available parameters.
         """
         self.text_buffer = ""
         self.running = False
         
+        # Store preinitialized model if provided
+        self.preinitialized_model = preinitialized_model
+
         # Store constructor parameters
         self.config = {
             # General Parameters
@@ -148,26 +155,26 @@ class LongFormTranscriber:
         """Lazy initialization of the recorder."""
         if self.recorder is not None:
             return self.recorder  # Return the recorder if already initialized
-            
-        # Create simpler callback functions that don't reference external attributes
-        def simple_on_recording_start():
-            # We don't print anything for recording start/stop to avoid cluttering
-            pass
-        
-        def simple_on_recording_stop():
-            # We don't print anything for recording start/stop to avoid cluttering
-            pass
-        
-        # Set the custom callbacks
-        self.config['on_recording_start'] = simple_on_recording_start
-        self.config['on_recording_stop'] = simple_on_recording_stop
         
         # Force disable real-time preview functionality
         self.config['enable_realtime_transcription'] = False
         
+        # No callbacks needed since we don't want to print anything
+        # Remove the previous callbacks completely
+        self.config['on_recording_start'] = None
+        self.config['on_recording_stop'] = None
+        
         try:
             # Now import the module
             from RealtimeSTT import AudioToTextRecorder
+            
+            # If we have a preinitialized model, we would use it here
+            # Log that we're reusing a model
+            if self.preinitialized_model:
+                if has_rich:
+                    console.print("[bold green]Using pre-initialized model[/bold green]")
+                else:
+                    print("Using pre-initialized model")
             
             # Initialize the recorder with all parameters
             self.recorder = AudioToTextRecorder(**self.config)

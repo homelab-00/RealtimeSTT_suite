@@ -78,6 +78,7 @@ class DirectFileTranscriber:
                  device_index: int = 0,
                  task: str = "transcribe",
                  callback_on_progress: Optional[Callable[[str], None]] = None,
+                 preinitialized_model=None,
                  **kwargs):
         """Initialize the transcriber with basic parameters."""
         # Transcription settings
@@ -90,6 +91,9 @@ class DirectFileTranscriber:
         self.use_tk_mainloop = use_tk_mainloop
         self.task = task
         self.callback_on_progress = callback_on_progress
+
+        # Store preinitialized model if provided
+        self.preinitialized_model = preinitialized_model
         
         # State variables
         self.transcribing = False
@@ -143,6 +147,13 @@ class DirectFileTranscriber:
             return False
             
         try:
+            # If we have a preinitialized model, use it directly
+            if self.preinitialized_model:
+                self._safe_print(f"Using pre-initialized Whisper model", "info")
+                self.whisper_model = self.preinitialized_model
+                return True
+            
+            # Otherwise, initialize a new model
             self._safe_print(f"Loading Whisper model: {self.model_name}...", "info")
             logging.info(f"Initializing Whisper model: {self.model_name}")
             

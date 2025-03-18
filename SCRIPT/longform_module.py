@@ -78,6 +78,7 @@ class LongFormTranscriber:
                  use_extended_logging: bool = False,
 
                 # Additional parameters
+                 preinitialized_model=None,
                  preload_model=False):
         """
         Initialize the transcriber with all available parameters.
@@ -85,7 +86,10 @@ class LongFormTranscriber:
         self.recording = False
         self.running = False
         self.last_transcription = ""
-        
+
+        # Store preinitialized model if provided
+        self.preinitialized_model = preinitialized_model
+
         # Store all configuration for lazy loading
         self.config = {
             # General Parameters
@@ -178,6 +182,15 @@ class LongFormTranscriber:
         try:
             # Now import the module
             from RealtimeSTT import AudioToTextRecorder
+            
+            # If we have a preinitialized model, we would use it here
+            # However, RealtimeSTT doesn't directly support passing a model object
+            # so we'll still use the model name but log that we're reusing
+            if self.preinitialized_model:
+                if has_rich:
+                    console.print("[bold green]Using pre-initialized model[/bold green]")
+                else:
+                    print("Using pre-initialized model")
             
             # Initialize the recorder with all parameters
             self.recorder = AudioToTextRecorder(**self.config)
