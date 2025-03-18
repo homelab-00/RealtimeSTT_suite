@@ -180,9 +180,9 @@ class LongFormTranscriber:
             self.recorder = AudioToTextRecorder(**self.config)
             
             if has_rich:
-                console.print("[bold green]Long-form transcription system initialized.[/bold green]")
+                console.print("[bold green]Real-time transcription system initialized.[/bold green]")
             else:
-                print("Long-form transcription system initialized.")
+                print("Real-time transcription system initialized.")
                 
             return self.recorder  # Return the recorder if initialization succeeded
         except Exception as e:
@@ -224,17 +224,10 @@ class LongFormTranscriber:
 
         self.running = True
 
-        # Print a clear header for the transcription block
         if has_rich:
-            from rich.panel import Panel
-            console.print(Panel(
-                "[bold]Speech recognition is now active[/bold]\nSpeak clearly - transcriptions will appear below",
-                title="Real-time Transcription Started",
-                border_style="green"
-            ))
+            console.print("[bold green]Real-time transcription active[/bold green]")
         else:
-            print("\n===== REAL-TIME TRANSCRIPTION STARTED =====")
-            print("Speak clearly - transcriptions will appear below\n")
+            print("Real-time transcription active")
 
         try:
             while self.running:

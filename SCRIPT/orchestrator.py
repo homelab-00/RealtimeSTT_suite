@@ -399,13 +399,17 @@ class STTOrchestrator:
                     if hasattr(transcriber, 'recorder') and transcriber.recorder:
                         # Call shutdown explicitly to clean up multiprocessing resources
                         try:
+                            # Redirect stdout temporarily to suppress messages
+                            original_stdout = sys.stdout
+                            sys.stdout = io.StringIO()
+                            
                             transcriber.recorder.abort()
                             transcriber.recorder.shutdown()
+                            
+                            # Restore stdout
+                            sys.stdout = original_stdout
                         except Exception as e:
                             self.log_error(f"Error during recorder shutdown: {e}")
-                        # Remove the recorder completely
-                        transcriber.recorder = None
-                    transcriber.model_initialized = False
                     
                 elif self.current_loaded_model_type == "longform":
                     if hasattr(transcriber, 'recorder') and transcriber.recorder:
@@ -540,6 +544,10 @@ class STTOrchestrator:
                 if transcriber:
                     transcriber.running = False
                 self.current_mode = None
+                
+                # Unload the model when turning off real-time mode
+                self._unload_current_model()
+                
             except Exception as e:
                 self.log_error(f"Error stopping real-time transcription: {e}")
         else:
@@ -853,25 +861,36 @@ class STTOrchestrator:
 
             # First, stop any active transcription mode
             try:
-                if self.current_mode == "realtime" and "realtime" in self.transcribers:
-                    safe_print("Stopping realtime transcription...")
-                    self.transcribers["realtime"].stop()
+                if self.current_mode == "longform" and "longform" in self.transcribers:
+                    safe_print("Stopping longform transcription...")
+                    # Add a try-except block around stopping
+                    try:
+                        self.transcribers["longform"].stop()
+                    except Exception as e:
+                        self.log_error(f"Error stopping longform transcription: {e}")
                     # Give it a moment to finish cleanup
                     time.sleep(0.5)
                 
-                elif self.current_mode == "longform" and "longform" in self.transcribers:
-                    safe_print("Stopping longform transcription...")
-                    if hasattr(self.transcribers["longform"], 'stop_recording'):
-                        self.transcribers["longform"].stop_recording()
+                if self.current_mode == "realtime" and "realtime" in self.transcribers:
+                    safe_print("Stopping realtime transcription...")
+                    # Add a try-except block around stopping
+                    try:
+                        self.transcribers["realtime"].stop()
+                    except Exception as e:
+                        self.log_error(f"Error stopping realtime transcription: {e}")
                     # Give it a moment to finish cleanup
                     time.sleep(0.5)
                     
-                elif self.current_mode == "static" and "static" in self.transcribers:
+                if self.current_mode == "static" and "static" in self.transcribers:
                     safe_print("Stopping static transcription...")
-                    if hasattr(self.transcribers["static"], 'request_abort'):
-                        self.transcribers["static"].request_abort()
+                    # Add a try-except block around stopping
+                    try:
+                        self.transcribers["static"].stop()
+                    except Exception as e:
+                        self.log_error(f"Error stopping static transcription: {e}")
                     # Give it a moment to finish cleanup
                     time.sleep(0.5)
+            
             except Exception as e:
                 self.log_error(f"Error stopping active mode: {e}")
 
