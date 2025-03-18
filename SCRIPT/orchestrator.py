@@ -118,27 +118,60 @@ class STTOrchestrator:
                 "language": "en",
                 "compute_type": "default",
                 "device": "cuda",
+                "input_device_index": None,
+                "gpu_device_index": 0,
                 "silero_sensitivity": 0.4,
+                "silero_use_onnx": False,
+                "silero_deactivity_detection": False,
                 "webrtc_sensitivity": 3,
-                "post_speech_silence_duration": 0.6
-                # Add more realtime parameters as needed
+                "post_speech_silence_duration": 0.6,
+                "min_length_of_recording": 1.0,
+                "min_gap_between_recordings": 1.0,
+                "pre_recording_buffer_duration": 0.2,
+                "ensure_sentence_starting_uppercase": True,
+                "ensure_sentence_ends_with_period": True,
+                "batch_size": 16,
+                "beam_size": 5,
+                "beam_size_realtime": 3,
+                "initial_prompt": None,
+                "allowed_latency_limit": 100,
+                "early_transcription_on_silence": 0,
+                "enable_realtime_transcription": True,
+                "realtime_processing_pause": 0.2,
+                "realtime_model_type": "tiny.en",
+                "realtime_batch_size": 16
             },
             "longform": {
                 "model": "Systran/faster-whisper-large-v3",
                 "language": "en",
                 "compute_type": "default",
                 "device": "cuda",
+                "input_device_index": None,
+                "gpu_device_index": 0,
                 "silero_sensitivity": 0.4,
+                "silero_use_onnx": False,
+                "silero_deactivity_detection": False,
                 "webrtc_sensitivity": 3,
-                "post_speech_silence_duration": 0.6
-                # Add more longform parameters as needed
+                "post_speech_silence_duration": 0.6,
+                "min_length_of_recording": 1.0,
+                "min_gap_between_recordings": 1.0,
+                "pre_recording_buffer_duration": 0.2,
+                "ensure_sentence_starting_uppercase": True,
+                "ensure_sentence_ends_with_period": True,
+                "batch_size": 16,
+                "beam_size": 5,
+                "initial_prompt": None,
+                "allowed_latency_limit": 100
             },
             "static": {
                 "model": "Systran/faster-whisper-large-v3",
                 "language": "en",
                 "compute_type": "float16",
-                "device": "cuda"
-                # Add more static parameters as needed
+                "device": "cuda",
+                "gpu_device_index": 0,
+                "beam_size": 5,
+                "batch_size": 16,
+                "vad_aggressiveness": 2
             }
         }
 
@@ -224,42 +257,75 @@ class STTOrchestrator:
             # Use a different initialization approach for each module type
             if module_type == "realtime":
                 safe_print(f"Initializing real-time transcriber...")
+                # Pass all configuration parameters
                 self.transcribers[module_type] = module.LongFormTranscriber(
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
                     language=module_config.get("language", "en"),
                     compute_type=module_config.get("compute_type", "default"),
                     device=module_config.get("device", "cuda"),
+                    input_device_index=module_config.get("input_device_index"),
+                    gpu_device_index=module_config.get("gpu_device_index", 0),
                     silero_sensitivity=module_config.get("silero_sensitivity", 0.4),
+                    silero_use_onnx=module_config.get("silero_use_onnx", False),
+                    silero_deactivity_detection=module_config.get("silero_deactivity_detection", False),
                     webrtc_sensitivity=module_config.get("webrtc_sensitivity", 3),
-                    post_speech_silence_duration=module_config.get("post_speech_silence_duration", 0.6)
-                    # Add other parameters as needed
+                    post_speech_silence_duration=module_config.get("post_speech_silence_duration", 0.6),
+                    min_length_of_recording=module_config.get("min_length_of_recording", 1.0),
+                    min_gap_between_recordings=module_config.get("min_gap_between_recordings", 1.0),
+                    pre_recording_buffer_duration=module_config.get("pre_recording_buffer_duration", 0.2),
+                    ensure_sentence_starting_uppercase=module_config.get("ensure_sentence_starting_uppercase", True),
+                    ensure_sentence_ends_with_period=module_config.get("ensure_sentence_ends_with_period", True),
+                    batch_size=module_config.get("batch_size", 16),
+                    beam_size=module_config.get("beam_size", 5),
+                    beam_size_realtime=module_config.get("beam_size_realtime", 3),
+                    initial_prompt=module_config.get("initial_prompt"),
+                    allowed_latency_limit=module_config.get("allowed_latency_limit", 100),
+                    early_transcription_on_silence=module_config.get("early_transcription_on_silence", 0),
+                    enable_realtime_transcription=module_config.get("enable_realtime_transcription", True),
+                    realtime_processing_pause=module_config.get("realtime_processing_pause", 0.2),
+                    realtime_model_type=module_config.get("realtime_model_type", "tiny.en"),
+                    realtime_batch_size=module_config.get("realtime_batch_size", 16)
                 )
                     
             elif module_type == "longform":
                 safe_print(f"Initializing long-form transcriber...")
+                # Pass all configuration parameters
                 self.transcribers[module_type] = module.LongFormTranscriber(
-                    # Configuration parameters (no hotkeys)
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
                     language=module_config.get("language", "en"),
                     compute_type=module_config.get("compute_type", "default"),
                     device=module_config.get("device", "cuda"),
+                    input_device_index=module_config.get("input_device_index"),
+                    gpu_device_index=module_config.get("gpu_device_index", 0),
                     silero_sensitivity=module_config.get("silero_sensitivity", 0.4),
+                    silero_use_onnx=module_config.get("silero_use_onnx", False),
+                    silero_deactivity_detection=module_config.get("silero_deactivity_detection", False),
                     webrtc_sensitivity=module_config.get("webrtc_sensitivity", 3),
                     post_speech_silence_duration=module_config.get("post_speech_silence_duration", 0.6),
-                    # Additional parameters
+                    min_length_of_recording=module_config.get("min_length_of_recording", 1.0),
+                    min_gap_between_recordings=module_config.get("min_gap_between_recordings", 1.0),
+                    pre_recording_buffer_duration=module_config.get("pre_recording_buffer_duration", 0.2),
+                    ensure_sentence_starting_uppercase=module_config.get("ensure_sentence_starting_uppercase", True),
+                    ensure_sentence_ends_with_period=module_config.get("ensure_sentence_ends_with_period", True),
+                    batch_size=module_config.get("batch_size", 16),
+                    beam_size=module_config.get("beam_size", 5),
+                    initial_prompt=module_config.get("initial_prompt"),
+                    allowed_latency_limit=module_config.get("allowed_latency_limit", 100),
                     preload_model=True
                 )
                     
             elif module_type == "static":
                 safe_print(f"Initializing static file transcriber...")
                 self.transcribers[module_type] = module.DirectFileTranscriber(
-                    # Configuration parameters (no hotkeys)
                     use_tk_mainloop=False,
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
                     language=module_config.get("language", "en"),
                     compute_type=module_config.get("compute_type", "float16"),
-                    device=module_config.get("device", "cuda")
-                    # Add other parameters as needed
+                    device=module_config.get("device", "cuda"),
+                    gpu_device_index=module_config.get("gpu_device_index", 0),
+                    beam_size=module_config.get("beam_size", 5),
+                    batch_size=module_config.get("batch_size", 16),
+                    vad_aggressiveness=module_config.get("vad_aggressiveness", 2)
                 )
                     
             self.log_info(f"{module_type.capitalize()} transcriber initialized successfully")

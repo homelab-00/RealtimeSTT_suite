@@ -63,21 +63,6 @@ class LongFormTranscriber:
                  on_vad_detect_start: Callable = None,
                  on_vad_detect_stop: Callable = None,
                  
-                 # Wake Word Parameters
-                 wakeword_backend: str = "pvporcupine",
-                 openwakeword_model_paths: str = None,
-                 openwakeword_inference_framework: str = "onnx",
-                 wake_words: str = "",
-                 wake_words_sensitivity: float = 0.6,
-                 wake_word_activation_delay: float = 0.0,
-                 wake_word_timeout: float = 5.0,
-                 wake_word_buffer_duration: float = 0.1,
-                 on_wakeword_detected: Callable = None,
-                 on_wakeword_timeout: Callable = None,
-                 on_wakeword_detection_start: Callable = None,
-                 on_wakeword_detection_end: Callable = None,
-                 on_recorded_chunk: Callable = None,
-                 
                  # Advanced Parameters
                  debug_mode: bool = False,
                  handle_buffer_overflow: bool = True,
@@ -132,21 +117,6 @@ class LongFormTranscriber:
             'pre_recording_buffer_duration': pre_recording_buffer_duration,
             'on_vad_detect_start': on_vad_detect_start,
             'on_vad_detect_stop': on_vad_detect_stop,
-            
-            # Wake Word Parameters
-            'wakeword_backend': wakeword_backend,
-            'openwakeword_model_paths': openwakeword_model_paths,
-            'openwakeword_inference_framework': openwakeword_inference_framework,
-            'wake_words': wake_words,
-            'wake_words_sensitivity': wake_words_sensitivity,
-            'wake_word_activation_delay': wake_word_activation_delay,
-            'wake_word_timeout': wake_word_timeout,
-            'wake_word_buffer_duration': wake_word_buffer_duration,
-            'on_wakeword_detected': on_wakeword_detected,
-            'on_wakeword_timeout': on_wakeword_timeout,
-            'on_wakeword_detection_start': on_wakeword_detection_start,
-            'on_wakeword_detection_end': on_wakeword_detection_end,
-            'on_recorded_chunk': on_recorded_chunk,
             
             # Advanced Parameters
             'debug_mode': debug_mode,
