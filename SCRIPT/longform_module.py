@@ -4,7 +4,6 @@ import io
 import logging
 import time
 from typing import Callable, Optional, Union, List, Iterable
-from RealtimeSTT import AudioToTextRecorder
 
 # Windows-specific setup for PyTorch audio
 if os.name == "nt" and (3, 8) <= sys.version_info < (3, 99):
@@ -23,7 +22,6 @@ try:
 except ImportError:
     has_keyboard = False
     print("Please install the keyboard library: pip install keyboard")
-    print("This is required for the hotkey functionality.")
     sys.exit(1)
 
 # Import Rich for better terminal display with Unicode support
@@ -118,83 +116,113 @@ class LongFormTranscriber:
         self.running = False
         self.last_transcription = ""
         
+        # Store all configuration for lazy loading
+        self.config = {
+            # General Parameters
+            'model': model,
+            'download_root': download_root,
+            'language': language,
+            'compute_type': compute_type,
+            'input_device_index': input_device_index,
+            'gpu_device_index': gpu_device_index,
+            'device': device,
+            'on_recording_start': None,  # Will set custom callbacks
+            'on_recording_stop': None,   # Will set custom callbacks
+            'on_transcription_start': on_transcription_start,
+            'ensure_sentence_starting_uppercase': ensure_sentence_starting_uppercase,
+            'ensure_sentence_ends_with_period': ensure_sentence_ends_with_period,
+            'use_microphone': use_microphone,
+            'spinner': spinner,
+            'level': level,
+            'batch_size': batch_size,
+            
+            # Voice Activation Parameters
+            'silero_sensitivity': silero_sensitivity,
+            'silero_use_onnx': silero_use_onnx,
+            'silero_deactivity_detection': silero_deactivity_detection,
+            'webrtc_sensitivity': webrtc_sensitivity,
+            'post_speech_silence_duration': post_speech_silence_duration,
+            'min_length_of_recording': min_length_of_recording,
+            'min_gap_between_recordings': min_gap_between_recordings,
+            'pre_recording_buffer_duration': pre_recording_buffer_duration,
+            'on_vad_detect_start': on_vad_detect_start,
+            'on_vad_detect_stop': on_vad_detect_stop,
+            
+            # Wake Word Parameters
+            'wakeword_backend': wakeword_backend,
+            'openwakeword_model_paths': openwakeword_model_paths,
+            'openwakeword_inference_framework': openwakeword_inference_framework,
+            'wake_words': wake_words,
+            'wake_words_sensitivity': wake_words_sensitivity,
+            'wake_word_activation_delay': wake_word_activation_delay,
+            'wake_word_timeout': wake_word_timeout,
+            'wake_word_buffer_duration': wake_word_buffer_duration,
+            'on_wakeword_detected': on_wakeword_detected,
+            'on_wakeword_timeout': on_wakeword_timeout,
+            'on_wakeword_detection_start': on_wakeword_detection_start,
+            'on_wakeword_detection_end': on_wakeword_detection_end,
+            'on_recorded_chunk': on_recorded_chunk,
+            
+            # Advanced Parameters
+            'debug_mode': debug_mode,
+            'handle_buffer_overflow': handle_buffer_overflow,
+            'beam_size': beam_size,
+            'buffer_size': buffer_size,
+            'sample_rate': sample_rate,
+            'initial_prompt': initial_prompt,
+            'suppress_tokens': suppress_tokens,
+            'print_transcription_time': print_transcription_time,
+            'early_transcription_on_silence': early_transcription_on_silence,
+            'allowed_latency_limit': allowed_latency_limit,
+            'no_log_file': no_log_file,
+            'use_extended_logging': use_extended_logging,
+        }
+        
+        # External callbacks
+        self.external_on_recording_start = on_recording_start
+        self.external_on_recording_stop = on_recording_stop
+        
+        # Lazy-loaded recorder
+        self.recorder = None
+    
+    def _initialize_recorder(self):
+        """Lazy initialization of the recorder."""
+        if self.recorder is not None:
+            return
+            
         # Create custom recording callbacks that update our internal state
         def on_rec_start():
             self.recording = True
-            if on_recording_start:
-                on_recording_start()
+            if self.external_on_recording_start:
+                self.external_on_recording_start()
         
         def on_rec_stop():
             self.recording = False
-            if on_recording_stop:
-                on_recording_stop()
+            if self.external_on_recording_stop:
+                self.external_on_recording_stop()
+        
+        # Set the custom callbacks
+        self.config['on_recording_start'] = on_rec_start
+        self.config['on_recording_stop'] = on_rec_stop
+        
+        # Now import the module
+        from RealtimeSTT import AudioToTextRecorder
         
         # Initialize the recorder with all parameters
-        self.recorder = AudioToTextRecorder(
-            # General Parameters
-            model=model,
-            download_root=download_root,
-            language=language,
-            compute_type=compute_type,
-            input_device_index=input_device_index,
-            gpu_device_index=gpu_device_index,
-            device=device,
-            on_recording_start=on_rec_start,
-            on_recording_stop=on_rec_stop,
-            on_transcription_start=on_transcription_start,
-            ensure_sentence_starting_uppercase=ensure_sentence_starting_uppercase,
-            ensure_sentence_ends_with_period=ensure_sentence_ends_with_period,
-            use_microphone=use_microphone,
-            spinner=spinner,
-            level=level,
-            batch_size=batch_size,
-            
-            # Voice Activation Parameters
-            silero_sensitivity=silero_sensitivity,
-            silero_use_onnx=silero_use_onnx,
-            silero_deactivity_detection=silero_deactivity_detection,
-            webrtc_sensitivity=webrtc_sensitivity,
-            post_speech_silence_duration=post_speech_silence_duration,
-            min_length_of_recording=min_length_of_recording,
-            min_gap_between_recordings=min_gap_between_recordings,
-            pre_recording_buffer_duration=pre_recording_buffer_duration,
-            on_vad_detect_start=on_vad_detect_start,
-            on_vad_detect_stop=on_vad_detect_stop,
-            
-            # Wake Word Parameters
-            wakeword_backend=wakeword_backend,
-            openwakeword_model_paths=openwakeword_model_paths,
-            openwakeword_inference_framework=openwakeword_inference_framework,
-            wake_words=wake_words,
-            wake_words_sensitivity=wake_words_sensitivity,
-            wake_word_activation_delay=wake_word_activation_delay,
-            wake_word_timeout=wake_word_timeout,
-            wake_word_buffer_duration=wake_word_buffer_duration,
-            on_wakeword_detected=on_wakeword_detected,
-            on_wakeword_timeout=on_wakeword_timeout,
-            on_wakeword_detection_start=on_wakeword_detection_start,
-            on_wakeword_detection_end=on_wakeword_detection_end,
-            on_recorded_chunk=on_recorded_chunk,
-            
-            # Advanced Parameters
-            debug_mode=debug_mode,
-            handle_buffer_overflow=handle_buffer_overflow,
-            beam_size=beam_size,
-            buffer_size=buffer_size,
-            sample_rate=sample_rate,
-            initial_prompt=initial_prompt,
-            suppress_tokens=suppress_tokens,
-            print_transcription_time=print_transcription_time,
-            early_transcription_on_silence=early_transcription_on_silence,
-            allowed_latency_limit=allowed_latency_limit,
-            no_log_file=no_log_file,
-            use_extended_logging=use_extended_logging,
-        )
+        self.recorder = AudioToTextRecorder(**self.config)
+        
+        if has_rich:
+            console.print("[bold green]Long-form transcription system initialized.[/bold green]")
+        else:
+            print("Long-form transcription system initialized.")
     
     def start_recording(self):
         """
         Start recording audio for transcription.
         """
+        # Initialize recorder if needed
+        self._initialize_recorder()
+        
         if not self.recording:
             if has_rich:
                 console.print("[bold green]Starting recording...[/bold green]")
@@ -206,6 +234,13 @@ class LongFormTranscriber:
         """
         Stop recording audio and process the transcription.
         """
+        if not self.recorder:
+            if has_rich:
+                console.print("[yellow]No active recorder to stop.[/yellow]")
+            else:
+                print("\nNo active recorder to stop.")
+            return
+            
         if self.recording:
             if has_rich:
                 console.print("[bold yellow]Stopping recording...[/bold yellow]")
@@ -240,7 +275,7 @@ class LongFormTranscriber:
         Stop the transcription process and exit.
         """
         self.running = False
-        if self.recording:
+        if self.recording and self.recorder:
             self.stop_recording()
         
         if has_rich:
@@ -248,7 +283,13 @@ class LongFormTranscriber:
         else:
             print("\nExiting...")
         
-        self.recorder.shutdown()
+        self.clean_up()
+    
+    def clean_up(self):
+        """Clean up resources."""
+        if self.recorder:
+            self.recorder.shutdown()
+            self.recorder = None
     
     def run(self):
         """
@@ -256,22 +297,31 @@ class LongFormTranscriber:
         """
         self.running = True
         
-        # Set up keyboard hotkeys
-        keyboard.add_hotkey(self.start_hotkey, self.start_recording)
-        keyboard.add_hotkey(self.stop_hotkey, self.stop_recording)
-        keyboard.add_hotkey(self.quit_hotkey, self.quit)
+        # Set up keyboard hotkeys if provided
+        if self.start_hotkey:
+            keyboard.add_hotkey(self.start_hotkey, self.start_recording)
+        if self.stop_hotkey:
+            keyboard.add_hotkey(self.stop_hotkey, self.stop_recording)
+        if self.quit_hotkey:
+            keyboard.add_hotkey(self.quit_hotkey, self.quit)
         
         # Show instructions
         if has_rich:
             console.print("[bold]Long-Form Speech Transcription[/bold]")
-            console.print(f"Press [bold green]{self.start_hotkey}[/bold green] to start recording")
-            console.print(f"Press [bold yellow]{self.stop_hotkey}[/bold yellow] to stop recording and transcribe")
-            console.print(f"Press [bold red]{self.quit_hotkey}[/bold red] to quit")
+            if self.start_hotkey:
+                console.print(f"Press [bold green]{self.start_hotkey}[/bold green] to start recording")
+            if self.stop_hotkey:
+                console.print(f"Press [bold yellow]{self.stop_hotkey}[/bold yellow] to stop recording and transcribe")
+            if self.quit_hotkey:
+                console.print(f"Press [bold red]{self.quit_hotkey}[/bold red] to quit")
         else:
             print("Long-Form Speech Transcription")
-            print(f"Press {self.start_hotkey} to start recording")
-            print(f"Press {self.stop_hotkey} to stop recording and transcribe")
-            print(f"Press {self.quit_hotkey} to quit")
+            if self.start_hotkey:
+                print(f"Press {self.start_hotkey} to start recording")
+            if self.stop_hotkey:
+                print(f"Press {self.stop_hotkey} to stop recording and transcribe")
+            if self.quit_hotkey:
+                print(f"Press {self.quit_hotkey} to quit")
         
         # Keep the program running until quit
         try:
