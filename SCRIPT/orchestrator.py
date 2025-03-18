@@ -547,9 +547,13 @@ class STTOrchestrator:
             # Stop the AutoHotkey script
             self.stop_ahk_script()
             
-            # Wait for the server thread to finish
+            # Only try to join the server thread if we're not currently in it
+            current_thread_id = threading.get_ident()
+            server_thread_id = self.server_thread.ident if self.server_thread else None
+            
             try:
-                if self.server_thread and self.server_thread.is_alive():
+                if (self.server_thread and self.server_thread.is_alive() and 
+                    current_thread_id != server_thread_id):
                     self.server_thread.join(timeout=2)
             except Exception as e:
                 self.log_error(f"Error joining server thread: {e}")
