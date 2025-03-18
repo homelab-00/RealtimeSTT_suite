@@ -868,11 +868,12 @@ class STTOrchestrator:
             console.print(Panel(
                 "[bold]Speech-to-Text Orchestrator[/bold]\n\n"
                 "Control the system using these hotkeys:\n"
-                "  [cyan]F2[/cyan]: Toggle real-time transcription\n"
-                "  [cyan]F3[/cyan]: Start long-form recording\n"
-                "  [cyan]F4[/cyan]: Stop long-form recording and transcribe\n"
+                "  [cyan]F1[/cyan]:  Open configuration dialogue box\n"
+                "  [cyan]F2[/cyan]:  Toggle real-time transcription\n"
+                "  [cyan]F3[/cyan]:  Start long-form recording\n"
+                "  [cyan]F4[/cyan]:  Stop long-form recording and transcribe\n"
                 "  [cyan]F10[/cyan]: Run static file transcription\n"
-                "  [cyan]F7[/cyan]: Quit application",
+                "  [cyan]F7[/cyan]:  Quit application",
                 title="Speech-to-Text System",
                 border_style="green"
             ))

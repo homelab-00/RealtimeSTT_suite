@@ -153,7 +153,19 @@ class ConfigurationDialog:
                     normalized_models.add(norm_name)
         
         return sorted(models)
+
+    def _update_language_label(self, section):
+        """Update the label showing the currently selected language."""
+        language_listbox = self.variables.get(f"{section}_language_listbox")
+        language_label = self.variables.get(f"{section}_language_label")
         
+        if language_listbox and language_label and language_listbox.curselection():
+            selection_idx = language_listbox.curselection()[0]
+            display_name = language_listbox.get(selection_idx)
+            language_code = self._get_code_from_display(display_name)
+            if language_code:
+                language_label.config(text=f"Currently selected: {language_code}")
+
     def show_dialog(self):
         """Show the configuration dialog."""
         # Create the main dialog window
@@ -192,8 +204,8 @@ class ConfigurationDialog:
         # Style for the notebook
         style = ttk.Style()
         style.configure("TNotebook", background=bg_color, borderwidth=0)
-        style.configure("TNotebook.Tab", background=button_bg, foreground=text_color, padding=[10, 5])
-        style.map("TNotebook.Tab", background=[("selected", highlight_color)], foreground=[("selected", text_color)])
+        style.configure("TNotebook.Tab", background=button_bg, foreground="#000000", padding=[10, 5])
+        style.map("TNotebook.Tab", background=[("selected", highlight_color)], foreground=[("selected", "#000000")])
         
         # Create tabs with scrollbars
         longform_tab = self._create_scrollable_tab(notebook, bg_color, button_bg)
@@ -406,6 +418,23 @@ class ConfigurationDialog:
         sorted_display = sorted(self.language_display.values())
         for display_name in sorted_display:
             language_listbox.insert(tk.END, display_name)
+
+        # Add a label to show the currently selected language
+        current_language_label = tk.Label(
+            languages_listbox_frame,
+            text=f"Currently selected: {current_language}",
+            bg=bg_color,
+            fg=text_color,
+            font=("Arial", 10, "italic"),
+            anchor="w"
+        )
+        current_language_label.pack(anchor="w", pady=(5, 0))
+
+        # Store the label for later use
+        self.variables[f"{section}_language_label"] = current_language_label
+
+        # Bind the listbox selection event to update the label
+        language_listbox.bind("<<ListboxSelect>>", lambda e, s=section: self._update_language_label(s))
         
         # Select the current language
         current_language = self.config[section].get("language", "en")
