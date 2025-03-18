@@ -15,15 +15,6 @@ if os.name == "nt":
     # Force UTF-8 encoding for stdout
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# Import keyboard library for hotkeys
-try:
-    import keyboard
-    has_keyboard = True
-except ImportError:
-    has_keyboard = False
-    print("Please install the keyboard library: pip install keyboard")
-    sys.exit(1)
-
 # Import Rich for better terminal display with Unicode support
 try:
     from rich.console import Console
@@ -38,20 +29,14 @@ except ImportError:
 
 class LongFormTranscriber:
     """
-    A class that provides manual control over speech recording and transcription,
-    allowing for long-form speech input controlled by keyboard shortcuts.
+    A class that provides manual control over speech recording and transcription.
     """
     
     def __init__(self, 
-                 # Hotkey Configuration
-                 start_hotkey: str = "ctrl+shift+r",
-                 stop_hotkey: str = "ctrl+shift+s",
-                 quit_hotkey: str = "ctrl+shift+q",
-                 
                  # General Parameters
-                 model: str = "large-v3",
+                 model: str = "Systran/faster-whisper-large-v3",
                  download_root: str = None,
-                 language: str = "el",
+                 language: str = "en",
                  compute_type: str = "default",
                  input_device_index: int = None,
                  gpu_device_index: Union[int, List[int]] = 0,
@@ -112,9 +97,6 @@ class LongFormTranscriber:
         """
         Initialize the transcriber with all available parameters.
         """
-        self.start_hotkey = start_hotkey
-        self.stop_hotkey = stop_hotkey
-        self.quit_hotkey = quit_hotkey
         self.recording = False
         self.running = False
         self.last_transcription = ""
@@ -320,17 +302,24 @@ class LongFormTranscriber:
     
     def run(self):
         """
-        Start the long-form transcription process with keyboard controls.
+        Start the long-form transcription process.
         """
         self.running = True
-        
-        # Set up keyboard hotkeys if provided
-        if self.start_hotkey:
-            keyboard.add_hotkey(self.start_hotkey, self.start_recording)
-        if self.stop_hotkey:
-            keyboard.add_hotkey(self.stop_hotkey, self.stop_recording)
-        if self.quit_hotkey:
-            keyboard.add_hotkey(self.quit_hotkey, self.quit)
+
+        # Show instructions (without hotkey references)
+        if has_rich:
+            console.print("[bold]Long-Form Speech Transcription[/bold]")
+            console.print("Ready for transcription")
+        else:
+            print("Long-Form Speech Transcription")
+            print("Ready for transcription")
+
+        # Keep the program running until quit
+        try:
+            while self.running:
+                time.sleep(0.1)  # Sleep to avoid high CPU usage
+        except KeyboardInterrupt:
+            self.quit()
         
         # Show instructions
         if has_rich:

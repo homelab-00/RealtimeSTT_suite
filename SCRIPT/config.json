@@ -1,0 +1,26 @@
+{
+    "realtime": {
+        "model": "Systran/faster-whisper-large-v3",
+        "language": "en",
+        "compute_type": "default",
+        "device": "cuda",
+        "silero_sensitivity": 0.4,
+        "webrtc_sensitivity": 3,
+        "post_speech_silence_duration": 0.6
+    },
+    "longform": {
+        "model": "Systran/faster-whisper-large-v3",
+        "language": "en",
+        "compute_type": "default",
+        "device": "cuda",
+        "silero_sensitivity": 0.4,
+        "webrtc_sensitivity": 3,
+        "post_speech_silence_duration": 0.6
+    },
+    "static": {
+        "model": "Systran/faster-whisper-large-v3",
+        "language": "en",
+        "compute_type": "float16",
+        "device": "cuda"
+    }
+}

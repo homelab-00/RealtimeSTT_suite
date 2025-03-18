@@ -33,9 +33,9 @@ class LongFormTranscriber:
     
     def __init__(self, 
                  # General Parameters
-                 model: str = "large-v3",
+                 model: str = "Systran/faster-whisper-large-v3",
                  download_root: str = None,
-                 language: str = "el",
+                 language: str = "en",
                  compute_type: str = "default",
                  input_device_index: int = None,
                  gpu_device_index: Union[int, List[int]] = 0,

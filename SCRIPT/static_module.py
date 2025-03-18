@@ -69,12 +69,10 @@ class DirectFileTranscriber:
     """
     
     def __init__(self, 
-                 file_select_hotkey: str = "",
-                 quit_hotkey: str = "",
                  use_tk_mainloop: bool = False,
-                 model: str = "large-v3",
+                 model: str = "Systran/faster-whisper-large-v3",
                  download_root: Optional[str] = None,
-                 language: str = "el",
+                 language: str = "en",
                  compute_type: str = "float16",
                  device: str = "cuda",
                  device_index: int = 0,

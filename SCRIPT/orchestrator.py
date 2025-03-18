@@ -89,12 +89,16 @@ class STTOrchestrator:
     def __init__(self):
         """Initialize the orchestrator."""
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.config_path = os.path.join(self.script_dir, "config.json")
         
         # Application state
         self.running = False
         self.server_thread = None
         self.current_mode = None  # Can be "realtime", "longform", or "static"
         self.ahk_pid = None
+
+        # Initialize configuration
+        self._load_or_create_config()
         
         # Module information - we'll import modules lazily
         self.modules = {}
@@ -102,7 +106,77 @@ class STTOrchestrator:
         
         # Register cleanup handler
         atexit.register(self.stop)
-    
+
+    def _load_or_create_config(self):
+        """Load configuration from file or create it if it doesn't exist."""
+        import json
+
+        # Define default configuration with full model names and English language
+        default_config = {
+            "realtime": {
+                "model": "Systran/faster-whisper-large-v3",
+                "language": "en",
+                "compute_type": "default",
+                "device": "cuda",
+                "silero_sensitivity": 0.4,
+                "webrtc_sensitivity": 3,
+                "post_speech_silence_duration": 0.6
+                # Add more realtime parameters as needed
+            },
+            "longform": {
+                "model": "Systran/faster-whisper-large-v3",
+                "language": "en",
+                "compute_type": "default",
+                "device": "cuda",
+                "silero_sensitivity": 0.4,
+                "webrtc_sensitivity": 3,
+                "post_speech_silence_duration": 0.6
+                # Add more longform parameters as needed
+            },
+            "static": {
+                "model": "Systran/faster-whisper-large-v3",
+                "language": "en",
+                "compute_type": "float16",
+                "device": "cuda"
+                # Add more static parameters as needed
+            }
+        }
+
+        # Try to load existing config
+        if os.path.exists(self.config_path):
+            try:
+                with open(self.config_path, 'r') as f:
+                    loaded_config = json.load(f)
+
+                    # Update default config with loaded values
+                    for module_type in default_config:
+                        if module_type in loaded_config:
+                            for param, value in loaded_config[module_type].items():
+                                if param in default_config[module_type]:
+                                    default_config[module_type][param] = value
+
+                    self.config = default_config
+                    self.log_info("Configuration loaded from file")
+            except Exception as e:
+                self.log_error(f"Error loading configuration: {e}")
+                self.config = default_config
+        else:
+            # Use defaults and save to file
+            self.config = default_config
+            self._save_config()
+            self.log_info("Default configuration created")
+
+    def _save_config(self):
+        """Save current configuration to file."""
+        import json
+
+        try:
+            with open(self.config_path, 'w') as f:
+                json.dump(self.config, f, indent=4)
+            self.log_info("Configuration saved to file")
+        except Exception as e:
+            self.log_error(f"Error saving configuration: {e}")
+
     def import_module_lazily(self, module_name):
         """Import a module only when needed."""
         if module_name in self.modules and self.modules[module_name]:
@@ -144,33 +218,53 @@ class STTOrchestrator:
             return None
             
         try:
+            # Get configuration for this module
+            module_config = self.config.get(module_type, {})
+            
             # Use a different initialization approach for each module type
             if module_type == "realtime":
                 safe_print(f"Initializing real-time transcriber...")
-                self.transcribers[module_type] = module.LongFormTranscriber()
-                
+                self.transcribers[module_type] = module.LongFormTranscriber(
+                    model=module_config.get("model", "Systran/faster-whisper-large-v3"),
+                    language=module_config.get("language", "en"),
+                    compute_type=module_config.get("compute_type", "default"),
+                    device=module_config.get("device", "cuda"),
+                    silero_sensitivity=module_config.get("silero_sensitivity", 0.4),
+                    webrtc_sensitivity=module_config.get("webrtc_sensitivity", 3),
+                    post_speech_silence_duration=module_config.get("post_speech_silence_duration", 0.6)
+                    # Add other parameters as needed
+                )
+                    
             elif module_type == "longform":
                 safe_print(f"Initializing long-form transcriber...")
-                # Override hotkeys to avoid conflicts
                 self.transcribers[module_type] = module.LongFormTranscriber(
-                    start_hotkey="",
-                    stop_hotkey="",
-                    quit_hotkey="",
-                    preload_model=True  # Add this parameter to fully preload
+                    # Configuration parameters (no hotkeys)
+                    model=module_config.get("model", "Systran/faster-whisper-large-v3"),
+                    language=module_config.get("language", "en"),
+                    compute_type=module_config.get("compute_type", "default"),
+                    device=module_config.get("device", "cuda"),
+                    silero_sensitivity=module_config.get("silero_sensitivity", 0.4),
+                    webrtc_sensitivity=module_config.get("webrtc_sensitivity", 3),
+                    post_speech_silence_duration=module_config.get("post_speech_silence_duration", 0.6),
+                    # Additional parameters
+                    preload_model=True
                 )
-                
+                    
             elif module_type == "static":
                 safe_print(f"Initializing static file transcriber...")
-                # Override hotkeys to avoid conflicts
                 self.transcribers[module_type] = module.DirectFileTranscriber(
-                    file_select_hotkey="",
-                    quit_hotkey="",
-                    use_tk_mainloop=False
+                    # Configuration parameters (no hotkeys)
+                    use_tk_mainloop=False,
+                    model=module_config.get("model", "Systran/faster-whisper-large-v3"),
+                    language=module_config.get("language", "en"),
+                    compute_type=module_config.get("compute_type", "float16"),
+                    device=module_config.get("device", "cuda")
+                    # Add other parameters as needed
                 )
-                
+                    
             self.log_info(f"{module_type.capitalize()} transcriber initialized successfully")
             return self.transcribers[module_type]
-            
+                
         except Exception as e:
             self.log_error(f"Error initializing {module_type} transcriber: {e}")
             return None
