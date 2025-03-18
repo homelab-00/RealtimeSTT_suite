@@ -97,6 +97,9 @@ class STTOrchestrator:
         self.current_mode = None  # Can be "realtime", "longform", or "static"
         self.ahk_pid = None
 
+        # Track loaded models
+        self.loaded_models = {}
+
         # Initialize configuration
         self._load_or_create_config()
         
@@ -244,19 +247,28 @@ class STTOrchestrator:
         """Initialize a transcriber only when needed."""
         if module_type in self.transcribers and self.transcribers[module_type]:
             return self.transcribers[module_type]
-            
+
         module = self.import_module_lazily(module_type)
         if not module:
             self.log_error(f"Failed to import {module_type} module")
             return None
-            
+
         try:
             # Get configuration for this module
             module_config = self.config.get(module_type, {})
-            
+
+            # Check if we can reuse an existing model - NEW!
+            current_model_name = module_config.get("model", "Systran/faster-whisper-large-v3")
+            for model_type, model_info in self.loaded_models.items():
+                if model_info['name'] == current_model_name:
+                    safe_print(f"Reusing already loaded {model_type} model for {module_type}")
+
             # Use a different initialization approach for each module type
             if module_type == "realtime":
                 safe_print(f"Initializing real-time transcriber...")
+                # Force disable real-time preview functionality
+                module_config["enable_realtime_transcription"] = False
+
                 # Pass all configuration parameters
                 self.transcribers[module_type] = module.LongFormTranscriber(
                     model=module_config.get("model", "Systran/faster-whisper-large-v3"),
@@ -281,12 +293,12 @@ class STTOrchestrator:
                     initial_prompt=module_config.get("initial_prompt"),
                     allowed_latency_limit=module_config.get("allowed_latency_limit", 100),
                     early_transcription_on_silence=module_config.get("early_transcription_on_silence", 0),
-                    enable_realtime_transcription=module_config.get("enable_realtime_transcription", True),
+                    enable_realtime_transcription=False,
                     realtime_processing_pause=module_config.get("realtime_processing_pause", 0.2),
                     realtime_model_type=module_config.get("realtime_model_type", "tiny.en"),
                     realtime_batch_size=module_config.get("realtime_batch_size", 16)
                 )
-                    
+
             elif module_type == "longform":
                 safe_print(f"Initializing long-form transcriber...")
                 # Pass all configuration parameters
@@ -313,7 +325,7 @@ class STTOrchestrator:
                     allowed_latency_limit=module_config.get("allowed_latency_limit", 100),
                     preload_model=True
                 )
-                    
+
             elif module_type == "static":
                 safe_print(f"Initializing static file transcriber...")
                 self.transcribers[module_type] = module.DirectFileTranscriber(
@@ -327,10 +339,10 @@ class STTOrchestrator:
                     batch_size=module_config.get("batch_size", 16),
                     vad_aggressiveness=module_config.get("vad_aggressiveness", 2)
                 )
-                    
+
             self.log_info(f"{module_type.capitalize()} transcriber initialized successfully")
             return self.transcribers[module_type]
-                
+
         except Exception as e:
             self.log_error(f"Error initializing {module_type} transcriber: {e}")
             return None
@@ -404,18 +416,17 @@ class STTOrchestrator:
         if self.current_mode and self.current_mode != "realtime":
             safe_print(f"Cannot start real-time mode while in {self.current_mode} mode. Please finish the current operation first.")
             return
-            
+
         if self.current_mode == "realtime":
             # Real-time transcription is already running, so stop it
             safe_print("Stopping real-time transcription...")
-            
+
             try:
                 transcriber = self.transcribers.get("realtime")
                 if transcriber:
                     transcriber.running = False
-                    transcriber.stop()
+                    # Don't call transcriber.stop() here, it will be called in the _run_realtime thread
                 self.current_mode = None
-                safe_print("Real-time transcription stopped.")
             except Exception as e:
                 self.log_error(f"Error stopping real-time transcription: {e}")
         else:
@@ -426,10 +437,10 @@ class STTOrchestrator:
                 if not transcriber:
                     safe_print("Failed to initialize real-time transcriber.")
                     return
-                    
+
                 safe_print("Starting real-time transcription...")
                 self.current_mode = "realtime"
-                
+
                 # Start real-time transcription in a separate thread
                 threading.Thread(target=self._run_realtime, daemon=True).start()
             except Exception as e:
@@ -449,9 +460,6 @@ class STTOrchestrator:
             transcriber.text_buffer = ""
             
             # Start transcription
-            safe_print("Real-time transcription active. Speak now...")
-            
-            # This will run until stopped
             transcriber.start()
             
             self.log_info("Real-time transcription stopped")
@@ -459,7 +467,6 @@ class STTOrchestrator:
             
         except Exception as e:
             self.log_error(f"Error in _run_realtime: {e}")
-            self.current_mode = None
             
             # Make sure to clean up properly
             try:
@@ -648,13 +655,12 @@ class STTOrchestrator:
             # Force complete initialization including the AudioToTextRecorder
             if hasattr(longform_transcriber, 'force_initialize'):
                 if longform_transcriber.force_initialize():
+                    # After this line, add:
+                    self.loaded_models['longform'] = {
+                        'name': self.config['longform']['model'],
+                        'transcriber': longform_transcriber
+                    }
                     safe_print("Long-form transcription model fully loaded and ready to use.")
-                else:
-                    safe_print("Failed to fully initialize the long-form transcription model.")
-            else:
-                safe_print("Long-form transcription model loaded but may require additional initialization on first use.")
-        else:
-            safe_print("Failed to pre-load the long-form transcription model.")
         
         # Display startup banner
         if HAS_RICH:

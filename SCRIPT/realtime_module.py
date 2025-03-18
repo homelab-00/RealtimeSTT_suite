@@ -74,7 +74,12 @@ class LongFormTranscriber:
                  early_transcription_on_silence: int = 0,
                  allowed_latency_limit: int = 100,
                  no_log_file: bool = True,
-                 use_extended_logging: bool = False):
+                 use_extended_logging: bool = False,
+                 beam_size_realtime: int = 3,
+                 enable_realtime_transcription: bool = False,
+                 realtime_processing_pause: float = 0.05,
+                 realtime_model_type: str = "tiny.en",
+                 realtime_batch_size: int = 16):
         """
         Initialize the transcriber with all available parameters.
         """
@@ -142,28 +147,43 @@ class LongFormTranscriber:
     def _initialize_recorder(self):
         """Lazy initialization of the recorder."""
         if self.recorder is not None:
-            return True
+            return self.recorder  # Return the recorder if already initialized
             
+        # Create simpler callback functions that don't reference external attributes
+        def simple_on_recording_start():
+            # We don't print anything for recording start/stop to avoid cluttering
+            pass
+        
+        def simple_on_recording_stop():
+            # We don't print anything for recording start/stop to avoid cluttering
+            pass
+        
+        # Set the custom callbacks
+        self.config['on_recording_start'] = simple_on_recording_start
+        self.config['on_recording_stop'] = simple_on_recording_stop
+        
+        # Force disable real-time preview functionality
+        self.config['enable_realtime_transcription'] = False
+        
         try:
             # Now import the module
             from RealtimeSTT import AudioToTextRecorder
             
             # Initialize the recorder with all parameters
             self.recorder = AudioToTextRecorder(**self.config)
-            self.model_initialized = True
             
             if has_rich:
-                console.print("[bold green]Real-time transcription system initialized.[/bold green]")
+                console.print("[bold green]Long-form transcription system initialized.[/bold green]")
             else:
-                print("Real-time transcription system initialized.")
+                print("Long-form transcription system initialized.")
                 
-            return True
+            return self.recorder  # Return the recorder if initialization succeeded
         except Exception as e:
             if has_rich:
                 console.print(f"[bold red]Error initializing recorder: {str(e)}[/bold red]")
             else:
                 print(f"Error initializing recorder: {str(e)}")
-            return False
+            return None
     
     def _handle_realtime_update(self, text):
         """Handler for real-time transcription updates."""
@@ -173,24 +193,16 @@ class LongFormTranscriber:
                 
     def process_speech(self, text):
         """
-        Process the transcribed speech by appending it to the text buffer
-        and displaying only the full transcript.
+        Process the transcribed speech and display it cleanly.
         """
-        if text is None:
+        if text is None or not text.strip():
             return
-            
-        # Add space between sentences if needed
-        if self.text_buffer and not self.text_buffer.endswith(" "):
-            self.text_buffer += " "
-        
-        # Append the new text to our buffer
-        self.text_buffer += text
-        
-        # Display only the complete transcription when new text is received
+
+        # Display the complete transcription
         if has_rich:
             console.print(Text(text, style="bold cyan"))
         else:
-            print(f"\nTranscription: {text}")
+            print(text)
     
     def start(self):
         """
@@ -202,16 +214,21 @@ class LongFormTranscriber:
             else:
                 print("Failed to initialize the recorder. Cannot start transcription.")
             return
-            
+
         self.running = True
-        
+
+        # Print a clear header for the transcription block
         if has_rich:
-            console.print("[bold green]Speech recognition ready![/bold green]")
-            console.print("Begin speaking. Your words will be transcribed continuously.")
+            from rich.panel import Panel
+            console.print(Panel(
+                "[bold]Speech recognition is now active[/bold]\nSpeak clearly - transcriptions will appear below",
+                title="Real-time Transcription Started",
+                border_style="green"
+            ))
         else:
-            print("Speech recognition ready!")
-            print("Begin speaking. Your words will be transcribed continuously.")
-        
+            print("\n===== REAL-TIME TRANSCRIPTION STARTED =====")
+            print("Speak clearly - transcriptions will appear below\n")
+
         try:
             while self.running:
                 try:
@@ -225,7 +242,7 @@ class LongFormTranscriber:
                     else:
                         print(f"Error during transcription: {str(e)}")
                     time.sleep(0.1)  # Brief pause before retrying
-                
+
         except KeyboardInterrupt:
             # Handle graceful exit on Ctrl+C
             if has_rich:
@@ -240,7 +257,7 @@ class LongFormTranscriber:
         Stop the transcription process and clean up resources.
         """
         self.running = False
-        
+
         if self.recorder:
             try:
                 self.recorder.abort()  # Abort any ongoing recording/transcription
@@ -251,12 +268,17 @@ class LongFormTranscriber:
                 else:
                     print(f"Error during shutdown: {str(e)}")
             self.recorder = None
-            self.model_initialized = False
-        
+
+        # Print a clear footer for the transcription block
         if has_rich:
-            console.print("[bold]Speech recognition stopped.[/bold]")
+            from rich.panel import Panel
+            console.print(Panel(
+                "Transcription has been stopped",
+                title="Real-time Transcription Ended",
+                border_style="yellow"
+            ))
         else:
-            print("Speech recognition stopped.")
+            print("\n===== REAL-TIME TRANSCRIPTION ENDED =====\n")
     
     def get_transcribed_text(self):
         """
