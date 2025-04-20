@@ -372,10 +372,13 @@ class ConfigurationDialog:
             bg_color, text_color, entry_bg, highlight_color
         )
         language_frame.pack(fill="x", pady=5)
-        
+
         languages_listbox_frame = tk.Frame(tab, bg=bg_color)
         languages_listbox_frame.pack(fill="x", padx=20, pady=5)
-        
+
+        # Get the current language FIRST
+        current_language = self.config[section].get("language", "en")
+
         languages_label = tk.Label(
             languages_listbox_frame,
             text="Select Language:",
@@ -437,7 +440,6 @@ class ConfigurationDialog:
         language_listbox.bind("<<ListboxSelect>>", lambda e, s=section: self._update_language_label(s))
         
         # Select the current language
-        current_language = self.config[section].get("language", "en")
         for i in range(language_listbox.size()):
             item = language_listbox.get(i)
             if current_language in item and f"({current_language})" in item:
