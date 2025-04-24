@@ -20,7 +20,7 @@
         "batch_size": 16,
         "beam_size": 5,
         "beam_size_realtime": 3,
-        "initial_prompt": "",
+        "initial_prompt": null,
         "allowed_latency_limit": 100,
         "early_transcription_on_silence": 0,
         "enable_realtime_transcription": true,
@@ -48,7 +48,7 @@
         "ensure_sentence_ends_with_period": true,
         "batch_size": 16,
         "beam_size": 5,
-        "initial_prompt": "",
+        "initial_prompt": null,
         "allowed_latency_limit": 100
     },
     "static": {

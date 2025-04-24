@@ -670,8 +670,22 @@ class ConfigurationDialog:
         
         # Save the configuration to file
         try:
+            # Define a function to fix None values
+            def fix_none_values(obj):
+                if isinstance(obj, dict):
+                    return {k: fix_none_values(v) for k, v in obj.items()}
+                elif isinstance(obj, list):
+                    return [fix_none_values(i) for i in obj]
+                elif obj == "":
+                    return None  # Convert empty strings back to None
+                else:
+                    return obj
+            
+            # Apply the fix to the config object
+            fixed_config = fix_none_values(self.updated_config)
+            
             with open(self.config_path, 'w') as f:
-                json.dump(self.updated_config, f, indent=4)
+                json.dump(fixed_config, f, indent=4)
             self._print("Configuration saved successfully")
         except Exception as e:
             self._print_error(f"Error saving configuration: {e}")
