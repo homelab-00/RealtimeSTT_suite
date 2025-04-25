@@ -49,6 +49,7 @@ try:
     from rich.console import Console
     from rich.panel import Panel
     from rich.text import Text
+    from rich.live import Live
     console = Console()
     HAS_RICH = True
 except ImportError:
@@ -1009,7 +1010,11 @@ class STTOrchestrator:
                 f"  GPU: {hardware_info['gpu']}"
             )
             
-            console.print(Panel(panel_content, title="Speech-to-Text System", border_style="green"))
+            info_panel = Panel(panel_content, title="Speech-to-Text System", border_style="green")
+            with Live(info_panel, console=console, auto_refresh=False) as live:
+                live.update(info_panel)
+                # Brief pause to ensure proper display
+                time.sleep(0.1)
         else:
             safe_print("="*50)
             safe_print("Speech-to-Text Orchestrator Running")

@@ -253,11 +253,15 @@ class LongFormTranscriber:
             
             # Display the transcription
             if has_rich:
-                console.print(Panel(
+                transcription_panel = Panel(
                     Text(self.last_transcription, style="bold green"),
                     title="Transcription",
                     border_style="green"
-                ))
+                )
+                with Live(transcription_panel, console=console, auto_refresh=False) as live:
+                    live.update(transcription_panel)
+                    # Give time for display to render before continuing
+                    time.sleep(0.1)
             else:
                 print("\n" + "-" * 60)
                 print("Transcription:")

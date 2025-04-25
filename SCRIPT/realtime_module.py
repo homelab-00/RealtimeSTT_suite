@@ -20,6 +20,7 @@ if os.name == "nt":
 try:
     from rich.console import Console
     from rich.text import Text
+    from rich.live import Live
     console = Console()
     has_rich = True
 except ImportError:
@@ -207,7 +208,9 @@ class LongFormTranscriber:
 
         # Display the complete transcription
         if has_rich:
-            console.print(Text(text, style="bold cyan"))
+            formatted_text = Text(text, style="bold cyan")
+            with Live(formatted_text, console=console, auto_refresh=False) as live:
+                live.update(formatted_text)
         else:
             print(text)
     

@@ -40,6 +40,7 @@ try:
     from rich.console import Console
     from rich.panel import Panel
     from rich.text import Text
+    from rich.live import Live
     console = Console()
     HAS_RICH = True
 except ImportError:
@@ -479,7 +480,10 @@ class DirectFileTranscriber:
                         title="Static File Transcription",
                         border_style="yellow"
                     )
-                    console.print(panel)
+                    with Live(panel, console=console, auto_refresh=False) as live:
+                        live.update(panel)
+                        # Brief pause to ensure display renders properly
+                        time.sleep(0.1)
                 else:
                     self._safe_print("---- Transcription Result ----", "success")
                     self._safe_print(final_text)
